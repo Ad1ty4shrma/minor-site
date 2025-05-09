@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Warden Dashboard - Outpass Requests</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background: #121212; /* Dark background */
+            color: white; /* Light text */
+        }
+
+        /* Navbar - Styled like homepage.html */
+        .navbar {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 20px 50px;
+          background: linear-gradient(90deg, #1e1e1e, #333);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+          position: sticky;
+          top: 0;
+          z-index: 10;
+        }
+
+        .navbar .logo a {
+          font-size: 22px;
+          font-weight: 700;
+          color: #4ea8de; /* Accent color */
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+        }
+
+        .navbar ul {
+          display: flex;
+          list-style: none;
+          gap: 25px;
+          align-items: center;
+        }
+
+        .navbar ul li {
+            position: relative; /* Needed for dropdown */
+        }
+
+        .navbar ul li a {
+          color: white;
+          text-decoration: none;
+          font-size: 16px;
+          font-weight: 500;
+          transition: background 0.3s, color 0.3s;
+          padding: 8px 15px;
+          border-radius: 5px;
+          display: inline-block; /* Ensure padding applies correctly */
+        }
+
+        .navbar ul li a:hover,
+        .navbar ul li a.active {
+          background: #4ea8de; /* Accent background on hover/active */
+          color: #121212; /* Dark text */
+        }
+
+        /* Page Heading */
+        .page-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 40px 50px 20px; /* Adjusted margin */
+            color: #4ea8de; /* Accent color */
+        }
+
+        /* Table Container - Dark Theme */
+        .table-container {
+            margin: 20px 50px;
+            background: #1e1e1e; /* Slightly lighter dark background */
+            border-radius: 8px; /* Consistent radius */
+            box-shadow: 0 6px 12px rgba(0,0,0,0.4); /* Dark theme shadow */
+            overflow-x: auto; /* For responsiveness */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 15px; /* Slightly smaller */
+            min-width: 700px; /* Adjusted min-width after removing a column */
+        }
+        th, td {
+            padding: 15px 20px; /* Adjusted padding */
+            text-align: left;
+            border-bottom: 1px solid #333; /* Darker border */
+        }
+        thead {
+            background: #2a2a2a; /* Darker header */
+        }
+        th {
+            color: #4ea8de; /* Accent color for header text */
+            font-weight: 600;
+            text-transform: uppercase; /* Style header text */
+            font-size: 14px; /* Smaller header font */
+            letter-spacing: 0.5px;
+        }
+        tbody tr {
+             border-bottom: 1px solid #333; /* Ensure body rows also have border */
+        }
+        tbody tr:last-child td {
+             border-bottom: none; /* Remove border from last row */
+        }
+        tbody tr:hover {
+            background-color: #282828; /* Subtle hover effect */
+        }
+        td strong {
+            color: #e0e0e0; /* Slightly brighter for names */
+            font-weight: 600;
+        }
+        td span:not(.status-badge) { /* For Roll No */
+            display: block;
+            font-size: 13px;
+            color: #aaa;
+            margin-top: 3px;
+        }
+
+        /* Status Badge - Dark Theme Adaptation */
+        .status-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: capitalize;
+        }
+        .status-badge.pending { /* Added class for easier selection */
+            background-color: #ffc107; /* Yellow */
+            color: #121212; /* Dark text for contrast */
+        }
+        .status-badge.approved { /* Added class */
+            background-color: #28a745; /* Green */
+            color: white;
+        }
+        .status-badge.rejected { /* Added class */
+            background-color: #dc3545; /* Red */
+            color: white;
+        }
+
+        /* View Link / Button */
+        .view-details-btn {
+            color: #4ea8de; /* Accent color */
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: inherit;
+        }
+        .view-details-btn:hover {
+            color: #6ec1f1; /* Lighter blue on hover */
+            text-decoration: underline;
+        }
+
+        /* --- Dropdown styles - Dark Theme --- */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown .dropdown-trigger {
+             cursor: pointer;
+             white-space: nowrap;
+        }
+        .dropdown-content {
+            display: block;
+            position: absolute;
+            background-color: #1e1e1e;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            z-index: 100;
+            border-radius: 5px;
+            right: 0;
+            top: calc(100% + 10px);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+            list-style: none;
+            padding: 8px 0;
+            margin: 0;
+            overflow: hidden;
+            border: 1px solid #333;
+        }
+        .dropdown-content.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown-content a {
+            display: block;
+            padding: 10px 20px;
+            font-size: 15px;
+            color: white;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        .dropdown-content a:hover {
+            background-color: #4ea8de;
+            color: #121212;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000; /* Ensure modal is on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        .modal-content {
+            background-color: #1e1e1e; /* Dark background for modal */
+            color: white;
+            margin: 5% auto; /* Adjusted margin for better centering */
+            padding: 25px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 700px; /* Max width for larger screens */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+        .modal-close {
+            color: #aaa;
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .modal-close:hover,
+        .modal-close:focus {
+            color: #4ea8de; /* Accent color on hover */
+            text-decoration: none;
+        }
+        .modal-header h2 {
+            color: #4ea8de; /* Accent color for modal title */
+            margin-bottom: 20px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+        .modal-body .detail-item {
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        .modal-body .detail-item strong {
+            color: #bbbbbb;
+            display: inline-block;
+            width: 120px; /* For alignment */
+        }
+        .modal-body .uploaded-file-container {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+        }
+        .modal-body .uploaded-file-container h3 {
+            color: #4ea8de;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        .modal-body .uploaded-file-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            border: 1px solid #444;
+            margin-top: 10px;
+            display: block; /* Ensure it's a block element */
+        }
+         .modal-body .uploaded-file-container a {
+            color: #6ec1f1;
+            text-decoration: none;
+            display: inline-block; /* For better spacing if multiple links */
+            margin-top: 10px;
+         }
+         .modal-body .uploaded-file-container a:hover {
+            text-decoration: underline;
+         }
+        .modal-actions {
+            margin-top: 25px;
+            text-align: right;
+        }
+        .modal-actions button {
+            background-color: #4ea8de;
+            color: #121212;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            margin-left: 10px;
+        }
+        .modal-actions button.reject {
+            background-color: #dc3545;
+            color: white;
+        }
+        .modal-actions button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo"><a href="warden.html"><i class="fas fa-university" style="margin-right: 8px;"></i> JUIT HELPSITE - Warden</a></div>
+        <ul>
+            <li class="dropdown">
+                <a href="#" class="active dropdown-trigger" id="outpassDropdownBtn">Outpass Requests ▼</a>
+                <div class="dropdown-content" id="outpassDropdownContent">
+                     <a href="#" data-filter="all">All Requests</a>
+                     <a href="#" data-filter="pending">Pending Requests</a>
+                     <a href="#" data-filter="approved">Approved Requests</a>
+                     <a href="#" data-filter="rejected">Rejected Requests</a>
+                </div>
+            </li>
+            <li><a href="warden_complaints.html">Student Complaints</a></li>
+            <li><a href="login.html">Logout</a></li>
+        </ul>
+    </nav>
+
+    <h1 class="page-title">Outpass Requests</h1>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Student</th>
+                    <!-- <th>Destination</th> REMOVED -->
+                    <th>Date Range</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="outpassTableBody">
+                <!-- Rows will be dynamically inserted here by JavaScript -->
+                <tr><td colspan="4" style="text-align:center; padding: 20px;">Loading outpass requests...</td></tr> <!-- Colspan changed to 4 -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Details Modal -->
+    <div id="detailsModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">×</span>
+            <div class="modal-header">
+                <h2>Outpass Request Details</h2>
+            </div>
+            <div class="modal-body">
+                <div class="detail-item"><strong>Student:</strong> <span id="modalStudentName"></span></div>
+                <div class="detail-item"><strong>Roll No:</strong> <span id="modalRollNo"></span></div>
+                <div class="detail-item"><strong>Reason:</strong> <span id="modalReason"></span></div>
+                <!-- <div class="detail-item"><strong>Destination:</strong> <span id="modalDestination"></span></div> REMOVED -->
+                <div class="detail-item"><strong>Date Range:</strong> <span id="modalDateRange"></span></div>
+                <div class="detail-item"><strong>Status:</strong> <span id="modalStatus"></span></div>
+
+                <div class="uploaded-file-container">
+                    <h3>Uploaded Document</h3>
+                    <div id="modalFileDisplay">
+                        <!-- Content (img or link) will be injected here by JS -->
+                    </div>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="reject" id="modalRejectBtn">Reject</button>
+                <button id="modalApproveBtn">Approve</button>
+            </div>
+        </div>
+    </div>
+
+
+<script>
+    const BACKEND_URL = 'http://localhost:5000'; // Your backend server URL
+
+    const dropdownBtn = document.getElementById('outpassDropdownBtn');
+    const dropdownContent = document.getElementById('outpassDropdownContent');
+    const outpassTableBody = document.getElementById('outpassTableBody');
+    const detailsModal = document.getElementById('detailsModal');
+    const modalCloseBtn = detailsModal.querySelector('.modal-close');
+
+    let currentOpenOutpassId = null; // To store the ID of the outpass being viewed in modal
+
+    // --- Dropdown Logic ---
+    function toggleDropdown(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        dropdownContent.classList.toggle('show');
+    }
+
+    function closeDropdown() {
+        if (dropdownContent.classList.contains('show')) {
+            dropdownContent.classList.remove('show');
+        }
+    }
+
+    dropdownBtn.addEventListener('click', toggleDropdown);
+    window.addEventListener('click', function(event) {
+        if (dropdownBtn && !dropdownBtn.contains(event.target) && dropdownContent && !dropdownContent.contains(event.target)) {
+           closeDropdown();
+        }
+        if (event.target === detailsModal) {
+            closeDetailsModal();
+        }
+    });
+    window.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeDropdown();
+            closeDetailsModal();
+        }
+    });
+
+    dropdownContent.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const filterValue = e.target.dataset.filter;
+            filterTable(filterValue);
+            closeDropdown();
+        });
+    });
+
+    function filterTable(filter) {
+        const rows = outpassTableBody.querySelectorAll('tr');
+        rows.forEach(row => {
+            if (!row.dataset.status) return; // Skip if no status (e.g., loading row)
+            const status = row.dataset.status.toLowerCase();
+
+            if (filter === 'all' || status.includes(filter)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }
+
+    // --- Modal Logic ---
+    function openDetailsModal(outpassData) {
+        currentOpenOutpassId = outpassData._id; // Store the ID
+
+        document.getElementById('modalStudentName').textContent = outpassData.name;
+        document.getElementById('modalRollNo').textContent = outpassData.studentId;
+        document.getElementById('modalReason').textContent = outpassData.reason;
+        // document.getElementById('modalDestination').textContent = outpassData.destination; // REMOVED
+        document.getElementById('modalDateRange').textContent = `${new Date(outpassData.fromDate).toLocaleDateString()} to ${new Date(outpassData.toDate).toLocaleDateString()}`;
+        document.getElementById('modalStatus').innerHTML = `<span class="status-badge ${outpassData.status.toLowerCase()}">${outpassData.status}</span>`;
+
+        const fileDisplay = document.getElementById('modalFileDisplay');
+        fileDisplay.innerHTML = ''; // Clear previous content
+
+        if (outpassData.image) { // 'image' field stores the path
+            console.log("Raw outpassData.image from backend:", outpassData.image);
+
+            const filePath = outpassData.image.replace(/\\/g, '/');
+            const fileUrl = `${BACKEND_URL}/${filePath}`;
+            console.log("Constructed fileUrl for image:", fileUrl);
+
+            const fileExtension = filePath.split('.').pop().toLowerCase();
+
+            if (['jpg', 'jpeg', 'png', 'gif'].includes(fileExtension)) {
+                fileDisplay.innerHTML = `<img src="${fileUrl}" alt="Outpass Document">`;
+            } else if (fileExtension === 'pdf') {
+                fileDisplay.innerHTML = `<p><a href="${fileUrl}" target="_blank">View PDF Document</a></p>
+                                         <p><em>(PDF will open in a new tab)</em></p>`;
+            } else if (filePath) {
+                 fileDisplay.innerHTML = `<p><a href="${fileUrl}" target="_blank">Download/View Uploaded File</a></p>`;
+            } else {
+                 fileDisplay.innerHTML = '<p>No document uploaded or path is invalid.</p>';
+            }
+        } else {
+            console.log("outpassData.image is null or undefined");
+            fileDisplay.innerHTML = '<p>No document uploaded.</p>';
+        }
+
+        detailsModal.style.display = 'block';
+    }
+
+    function closeDetailsModal() {
+        detailsModal.style.display = 'none';
+        currentOpenOutpassId = null;
+    }
+
+    modalCloseBtn.addEventListener('click', closeDetailsModal);
+
+    // --- Data Fetching and Table Population ---
+    async function fetchOutpasses() {
+        try {
+            const response = await fetch(`${BACKEND_URL}/api/outpass`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const outpasses = await response.json();
+            populateTable(outpasses);
+        } catch (error) {
+            console.error("Error fetching outpasses:", error);
+            outpassTableBody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:red; padding: 20px;">Failed to load outpass requests. Error: ${error.message}</td></tr>`; // Colspan changed to 4
+        }
+    }
+
+    function populateTable(outpasses) {
+        outpassTableBody.innerHTML = ''; // Clear existing rows (including loading message)
+
+        if (outpasses.length === 0) {
+            outpassTableBody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding: 20px;">No outpass requests found.</td></tr>'; // Colspan changed to 4
+            return;
+        }
+
+        outpasses.forEach(outpass => {
+            const row = outpassTableBody.insertRow();
+            row.dataset.outpassId = outpass._id; // Store ID for updates
+            row.dataset.status = outpass.status; // Store status for filtering
+
+            row.insertCell().innerHTML = `<strong>${outpass.name}</strong><span>${outpass.studentId}</span>`;
+            // row.insertCell().textContent = outpass.destination; // REMOVED
+            row.insertCell().textContent = `${new Date(outpass.fromDate).toLocaleDateString()} to ${new Date(outpass.toDate).toLocaleDateString()}`;
+            // Adjust cell index for status since one column was removed
+            row.insertCell().innerHTML = `<span class="status-badge ${outpass.status.toLowerCase()}">${outpass.status}</span>`;
+
+            const actionsCell = row.insertCell();
+            const viewBtn = document.createElement('button');
+            viewBtn.className = 'view-details-btn';
+            viewBtn.textContent = 'View Details';
+            viewBtn.onclick = () => openDetailsModal(outpass);
+            actionsCell.appendChild(viewBtn);
+        });
+    }
+
+    // --- Approve/Reject Logic ---
+    async function updateOutpassStatus(outpassId, newStatus) {
+        if (!outpassId) return;
+        try {
+            const response = await fetch(`${BACKEND_URL}/api/outpass/${outpassId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ status: newStatus }),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            console.log(result.message);
+            alert(`Outpass ${newStatus.toLowerCase()} successfully!`);
+
+            const rowToUpdate = outpassTableBody.querySelector(`tr[data-outpass-id="${outpassId}"]`);
+            if (rowToUpdate) {
+                // Adjust cell index for status update
+                rowToUpdate.cells[2].innerHTML = `<span class="status-badge ${newStatus.toLowerCase()}">${newStatus}</span>`;
+                rowToUpdate.dataset.status = newStatus;
+            }
+            filterTable(document.querySelector('.dropdown-content a.active-filter')?.dataset.filter || 'all');
+
+        } catch (error) {
+            console.error(`Error updating outpass status to ${newStatus}:`, error);
+            alert(`Failed to update outpass status. ${error.message}`);
+        } finally {
+            closeDetailsModal();
+        }
+    }
+
+    document.getElementById('modalApproveBtn').addEventListener('click', function() {
+        if (currentOpenOutpassId) {
+            updateOutpassStatus(currentOpenOutpassId, 'Approved');
+        }
+    });
+
+    document.getElementById('modalRejectBtn').addEventListener('click', function() {
+         if (currentOpenOutpassId) {
+            updateOutpassStatus(currentOpenOutpassId, 'Rejected');
+        }
+    });
+
+    // Initial load
+    document.addEventListener('DOMContentLoaded', fetchOutpasses);
+
+</script>
+</body>
+</html>

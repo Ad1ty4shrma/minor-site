@@ -1,0 +1,315 @@
+<!-- File: outpass.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outpass Signing - Upload</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* --- Global and Body Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #121212; /* Dark background */
+            color: white;
+            /* Removed text-align: center; from body if it was there */
+        }
+
+        /* --- Original Navbar Styles --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: linear-gradient(90deg, #1e1e1e, #333);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            position: relative; /* Maintain original positioning if needed */
+            z-index: 1; /* Maintain original z-index if needed */
+        }
+
+        .navbar .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: #4ea8de;
+            letter-spacing: 1px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            /* Remove align-items: center; if added previously, rely on flex defaults */
+        }
+
+        .navbar ul li {
+            display: inline; /* Keep as inline */
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: 0.3s;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+
+        .navbar ul li a:hover {
+            background: #4ea8de;
+            color: #121212;
+        }
+        /* --- End of Original Navbar Styles --- */
+
+        /* --- Page Title Styles --- */
+        .page-title {
+            font-size: 36px;
+            font-weight: 600;
+            margin-top: 70px; /* Restore original margin */
+            margin-bottom: 30px; /* Restore original margin */
+            text-align: center; /* Keep centered */
+            color: #4ea8de;
+        }
+        /* --- End of Page Title Styles --- */
+
+        /* --- Form Container Styles --- */
+        .form-container {
+            max-width: 600px;
+            margin: 30px auto; /* Keep form centered */
+            padding: 30px;
+            background: #1e1e1e;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+        /* --- End of Form Container Styles --- */
+
+        /* --- Form Input Group Styles --- */
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #bbb;
+            text-align: left; /* Align labels left */
+            font-weight: 500;
+        }
+
+        .input-group input[type="text"],
+        .input-group input[type="date"],
+        .input-group input[type="file"],
+        .input-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            background: #333;
+            border: 1px solid #444;
+            border-radius: 5px;
+            color: white;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        .input-group input:focus,
+        .input-group textarea:focus {
+             outline: none;
+             border-color: #4ea8de;
+        }
+
+        /* Specific style for file input label */
+        .input-group input[type="file"] {
+            padding: 5px; /* Adjust padding for file input */
+            /* Add any other specific file input styles if needed */
+        }
+        /* --- End of Form Input Group Styles --- */
+
+        /* --- Upload Button Styles --- */
+        .upload-btn {
+            display: block; /* Make button block */
+            width: 100%; /* Full width */
+            padding: 12px 25px;
+            background: #4ea8de;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+            margin-top: 15px; /* Add margin top */
+        }
+
+        .upload-btn:hover {
+            background: #3b8dc6;
+        }
+        /* --- End of Upload Button Styles --- */
+
+        /* --- Status Message Area Styles --- */
+        #statusMessage {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 500;
+            /* Hide by default or only show when populated */
+             display: none; /* Initially hidden */
+             color: white; /* Default text color */
+        }
+        #statusMessage.show {
+             display: block; /* Show when populated */
+        }
+        #statusMessage.success {
+            background-color: #28a745; /* Green */
+        }
+        #statusMessage.error {
+            background-color: #dc3545; /* Red */
+        }
+         #statusMessage.info { /* Added info style */
+            background-color: #17a2b8; /* Blue/Info */
+        }
+        /* --- End of Status Message Area Styles --- */
+
+    </style>
+</head>
+<body>
+
+    <!-- Navbar (Should now render correctly) -->
+    <nav class="navbar">
+        <div class="logo">JUIT HELPSITE</div>
+        <ul>
+            <li><a href="homepage.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="outpass.html">Outpass Signing</a></li>
+            <li><a href="report.html">Reports</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Title (Should be correct) -->
+    <h1 class="page-title">Outpass Approval</h1>
+
+    <!-- Form Container (Keep as is) -->
+    <section class="form-container">
+        <form id="outpassForm">
+            <!-- All input groups remain the same -->
+             <div class="input-group">
+                <label for="studentId">Student ID:</label>
+                <input type="text" id="studentId" name="studentId" placeholder="e.g., 2110991234" required>
+            </div>
+             <div class="input-group">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+            </div>
+            <div class="input-group">
+                <label for="reason">Reason for Leave:</label>
+                <input type="text" id="reason" name="reason" placeholder="e.g., Visiting family, Medical appointment" required>
+            </div>
+            <div class="input-group">
+                <label for="fromDate">From Date:</label>
+                <input type="date" id="fromDate" name="fromDate" required>
+            </div>
+            <div class="input-group">
+                <label for="toDate">To Date:</label>
+                <input type="date" id="toDate" name="toDate" required>
+            </div>
+            <div class="input-group">
+                <label for="outpassImage">Upload Outpass Image/PDF:</label>
+                <input type="file" id="outpassImage" name="image" accept="image/*,application/pdf" required>
+            </div>
+
+            <button type="submit" class="upload-btn" id="uploadButton">Upload and Submit</button>
+        </form>
+
+        <!-- Area to display status messages -->
+        <div id="statusMessage"></div>
+    </section>
+
+    <!-- JavaScript for handling the upload (Update displayMessage) -->
+    <script>
+        const outpassForm = document.getElementById('outpassForm');
+        const uploadButton = document.getElementById('uploadButton');
+        const statusMessage = document.getElementById('statusMessage');
+
+        // Listen for form submission
+        outpassForm.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent default form submission
+
+            // Clear previous status messages and hide
+            statusMessage.textContent = '';
+            statusMessage.className = ''; // Reset class
+            statusMessage.style.display = 'none'; // Hide it initially
+
+            // Get references to form elements
+            const studentIdInput = document.getElementById('studentId');
+            const nameInput = document.getElementById('name');
+            const reasonInput = document.getElementById('reason');
+            const fromDateInput = document.getElementById('fromDate');
+            const toDateInput = document.getElementById('toDate');
+            const imageInput = document.getElementById('outpassImage');
+
+            // Basic Validation
+            if (!imageInput.files || imageInput.files.length === 0) {
+                displayMessage('Please select an image or PDF file to upload.', 'error');
+                return;
+            }
+            const file = imageInput.files[0];
+
+            // Create FormData
+            const formData = new FormData();
+            formData.append('studentId', studentIdInput.value);
+            formData.append('name', nameInput.value);
+            formData.append('reason', reasonInput.value);
+            formData.append('fromDate', fromDateInput.value);
+            formData.append('toDate', toDateInput.value);
+            formData.append('image', file);
+
+            // Disable button and show info message
+            uploadButton.disabled = true;
+            uploadButton.textContent = 'Uploading...';
+            displayMessage('Submitting request...', 'info');
+
+            // API Call
+            const apiUrl = 'http://localhost:5000/api/outpass/create';
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    displayMessage('Success! Outpass submitted.', 'success');
+                    outpassForm.reset();
+                } else {
+                    displayMessage(`Error: ${result.message || response.statusText || 'Unknown server error'}`, 'error');
+                }
+
+            } catch (error) {
+                console.error('Upload Error:', error);
+                displayMessage('Upload failed. Could not connect to server or network error.', 'error');
+            } finally {
+                // Re-enable button
+                uploadButton.disabled = false;
+                uploadButton.textContent = 'Upload and Submit';
+            }
+        });
+
+        // Updated Helper function to display status messages and show the div
+        function displayMessage(message, type) {
+            statusMessage.textContent = message;
+            statusMessage.className = type; // Set class for styling (success, error, info)
+            statusMessage.classList.add('show'); // Add 'show' class to make it visible
+            statusMessage.style.display = 'block'; // Explicitly set display to block
+        }
+
+    </script>
+
+</body>
+</html>

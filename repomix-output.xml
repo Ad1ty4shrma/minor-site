@@ -1,0 +1,2659 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+4. Repository files, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+<additional_info>
+
+</additional_info>
+
+</file_summary>
+
+<directory_structure>
+about.html
+contact.html
+homepage.html
+login.html
+outpass.html
+repomix-output.txt
+report.html
+student-portal-backend/config/db.js
+student-portal-backend/controllers/outpassController.js
+student-portal-backend/middleware/upload.js
+student-portal-backend/models/Outpass.js
+student-portal-backend/package.json
+student-portal-backend/routes/outpassRoutes.js
+student-portal-backend/routes/uploadR.js
+student-portal-backend/server.js
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="about.html">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #121212; /* Dark background */
+            color: white;
+            text-align: center;
+        }
+
+/* Navbar */
+.navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: linear-gradient(90deg, #1e1e1e, #333);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .navbar .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: #4ea8de;
+            letter-spacing: 1px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .navbar ul li {
+            display: inline;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: 0.3s;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+
+        .navbar ul li a:hover {
+            background: #4ea8de;
+            color: #121212;
+        }
+
+        /* Page Title */
+        .page-title {
+            font-size: 36px;
+            font-weight: 600;
+            margin-top: 70px;
+            margin-bottom: 30px;
+            color: #4ea8de;
+        }
+
+        /* Container for Image & Text */
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            max-width: 90%;
+            margin: 50px auto;
+        }
+
+        /* Image Section */
+        .hero-image img {
+            width: 80%;
+            max-width: 800px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Text Section */
+        .hero-text {
+            max-width: 75%;
+            text-align: center;
+            font-size: 20px;
+            line-height: 1.8;
+            color: #ccc;
+            background: #1e1e1e;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">JUIT HELPSITE</div>
+        <ul>
+            <li><a href="homepage.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="outpass.html">Outpass Signing</a></li> 
+            <li><a href="report.html">Reports</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Image & Text Section -->
+    <section class="content">
+        <div class="hero-image">
+            <img src="https://live.staticflickr.com/8640/15848488996_91ceb49b11_h.jpg=" alt="College Image">
+        </div>
+
+        <div class="hero-text">
+            <p>The proposed website serves as a comprehensive platform designed to streamline outpass approvals and address bullying concerns within a college campus.</p>
+            <p>The outpass module enables students to request permissions digitally, with automated notifications to designated authorities for swift approval. This reduces paperwork and ensures transparency in the process.</p>
+            <p>The bullying helpline module offers a secure and anonymous space for students to report incidents of harassment or bullying.</p>
+            <p>The platform emphasizes user-friendliness, data security, and quick response times, fostering a safer, more inclusive campus environment while improving administrative efficiency.</p>
+        </div>
+    </section>
+
+</body>
+</html>
+</file>
+
+<file path="contact.html">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - JUIT Wardens</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #121212;
+            color: white;
+            text-align: center;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: linear-gradient(90deg, #1e1e1e, #333);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .navbar .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: #4ea8de;
+            letter-spacing: 1px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .navbar ul li {
+            display: inline;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: 0.3s;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+
+        .navbar ul li a:hover {
+            background: #4ea8de;
+            color: #121212;
+        }
+
+        /* Page Title */
+        .page-title {
+            font-size: 36px;
+            font-weight: 600;
+            margin-top: 70px;
+            margin-bottom: 30px;
+            color: #4ea8de;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            width: 60%;
+            margin: 0 auto;
+            padding: 20px;
+            background: #1e1e1e;
+            border-radius: 10px;
+        }
+
+        .contact-item {
+            margin: 15px 0;
+            padding: 15px;
+            border-bottom: 1px solid #4ea8de;
+        }
+
+        .contact-item:last-child {
+            border-bottom: none;
+        }
+
+        .contact-item h3 {
+            color: #4ea8de;
+            margin-bottom: 5px;
+        }
+
+        .contact-item p {
+            color: #bbb;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">JUIT HELPSITE</div>
+        <ul>
+            <li><a href="homepage.html">Home</a></li> 
+            <li><a href="about.html">About</a></li>
+            <li><a href="outpass.html">Outpass Signing</a></li>
+            <li><a href="report.html">Reports</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Title -->
+    <h1 class="page-title">Contact JUIT Wardens</h1>
+
+    <!-- Contact Information -->
+    <div class="contact-container">
+        <div class="contact-item">
+            <h3>Chief Warden</h3>
+            <p>Name: Dr. Rahul Shrivastava</p>
+            <p>Associate Professor, Department of BT&BI </p>
+            <p>Email: rahul.shrivastava@juitsolan.in;01792-239355 (O), 239531(R) Mob: 8894135634 </p>
+        </div>
+        <div class="contact-item">
+            <h3>Additional Chief Warden: Dr. Gopal Singh Bisht </h3>
+            <p>Associate Professor, Department of BT&BI</p>
+            <p>Email: gopal.singh@juitsolan.in; 01792-239220(O),  Mob: 8894135650 </p>
+        </div>
+        <div class="contact-item">
+            <h3>Dy. Chief Warden: Dr. Neelkanth</h3>
+            <p>Assistant Prof. (Sr Grade), Department of Mathematics</p>
+            <p>Email: neelkanth@juitsolan.in; 01792-239252 (O), 239517 (R) Mob: 8894227228</p>
+        </div>
+    </div>
+
+</body>
+</html>
+</file>
+
+<file path="homepage.html">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+    .notification {
+        position: relative;
+    }
+    
+    .notification a {
+        font-size: 20px;
+        color: white;
+        transition: 0.3s;
+        padding: 8px;
+    }
+    
+    .notification a:hover {
+        color: #4ea8de;
+    }
+    
+    .badge {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background: red;
+        color: white;
+        font-size: 12px;
+        padding: 4px 8px;
+        border-radius: 50%;
+    }
+    
+    .notif-dropdown {
+        display: none;
+        position: absolute;
+        top: 30px;
+        right: 0;
+        background: #1e1e1e;
+        color: white;
+        width: 200px;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+    
+    .notif-dropdown p {
+        margin: 0;
+        padding: 10px;
+        border-bottom: 1px solid #4ea8de;
+    }
+    
+    .notif-dropdown p:last-child {
+        border-bottom: none;
+    }
+    
+    .show {
+        display: block;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+        background: #121212;
+        color: white;
+    }
+
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 50px;
+        background: linear-gradient(90deg, #1e1e1e, #333);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        position: relative;
+        z-index: 1;
+    }
+
+    .navbar .logo {
+        font-size: 26px;
+        font-weight: 700;
+        color: #4ea8de;
+        letter-spacing: 1px;
+    }
+
+    .navbar ul {
+        list-style: none;
+        display: flex;
+        gap: 25px;
+        align-items: center;
+    }
+
+    .navbar ul li {
+        display: inline;
+        position: relative;
+    }
+
+    .navbar ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        transition: 0.3s;
+        padding: 8px 15px;
+        border-radius: 5px;
+    }
+
+    .navbar ul li a:hover {
+        background: #4ea8de;
+        color: #121212;
+    }
+
+    .page-title {
+        font-size: 36px;
+        font-weight: 600;
+        margin-top: 70px;
+        margin-bottom: 30px;
+        color: #4ea8de;
+    }
+
+    .hero {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 80px 50px;
+    }
+
+    .hero-text {
+        flex: 1;
+        max-width: 50%;
+    }
+
+    .hero-text h1 {
+        font-size: 42px;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+
+    .hero-text p {
+        font-size: 15px;
+        color: #bbb;
+        margin-bottom: 20px;
+    }
+
+    .hero-text .btn {
+        padding: 12px 25px;
+        background: #4ea8de;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .hero-text .btn:hover {
+        background: #3b8dc6;
+    }
+
+    .hero-image {
+        flex: 1;
+        max-width: 50%;
+    }
+
+    .hero-image img {
+        width: 100%;
+        border-radius: 10px;
+    }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">JUIT HELPSITE</div>
+        <ul>
+            <li><a href="homepage.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="outpass.html">Outpass Signing</a></li>
+            <li><a href="report.html">Reports</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li class="notification">
+                <a href="#" id="notif-bell"><i class="fa-solid fa-bell"></i></a>
+                <span class="badge" id="notif-count">0</span>
+                <div class="notif-dropdown" id="notif-dropdown">
+                    <p>No new notifications</p>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-text">
+            <h1>We are here to help.</h1>
+            <p>Get your outpass approved conveniently or report restricted activities directly to the authorities concerned.</p>
+            <a href="outpass.html" class="btn">Outpass</a>
+            <a href="report.html" class="btn">Report</a>
+        </div>
+        <div class="hero-image">
+            <img src="https://media.istockphoto.com/id/1130476273/photo/signing-the-agreement-in-the-contract.jpg?s=612x612&w=0&k=20&c=NlA-eL5ELryzYJCG4HMRgliVG78gdYgw1bYyI_y9UdE=" alt="College Image">
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('notif-bell').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('notif-dropdown').classList.toggle('show');
+        });
+    </script>
+</body>
+</html>
+</file>
+
+<file path="login.html">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/c/c9/Juit_o.jpg') no-repeat center center/cover;
+        }
+
+        .container {
+            display: flex;
+            width: 850px;
+            height: 500px;
+            background: rgba(8, 0, 0, 0.05);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(17, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .left {
+            flex: 1;
+            background: url('https://www.juit.ac.in/front/images/banner.jpg') no-repeat center center/cover;
+        }
+
+        .right {
+            flex: 1;
+            background: #000911;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: white;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 14px;
+            color: #bbb;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 14px;
+        }
+
+        input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .checkbox-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: #bbb;
+            margin-bottom: 20px;
+        }
+
+        .checkbox-group div {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap;    
+        }
+
+         .checkbox-group a {
+            color: #4ea8de;
+            text-decoration: none;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #4ea8de;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #3b8dc6;
+        }
+
+        .google-btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #4285f4;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .google-btn:hover {
+            background: #357ae8;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #bbb;
+            margin-top: 20px;
+        }
+
+        .footer a {
+            color: #4ea8de;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left"></div>
+        <div class="right">
+            <h2>Sign In</h2>
+            <div class="input-group">
+                <label for="email">Your email</label>
+                <input type="email" id="email" placeholder="Enter your email">
+            </div>
+            <div class="input-group">
+                <label for="password">Your password</label>
+                <input type="password" id="password" placeholder="Enter your password">
+            </div>
+            <div class="checkbox-group">
+                <div>
+                    <input type="checkbox" id="keep-logged">
+                    <label for="keep-logged">Stay logged in</label>
+                </div>
+                <a href="#">Forgot password?</a>
+            </div>
+            <a href="homepage.html"><button class="google-btn">SIGN IN</button></a>            
+            <button class="google-btn">SIGN IN WITH GOOGLE</button>
+            <div class="footer">
+                <p>Privacy • Terms • About</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+</file>
+
+<file path="outpass.html">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outpass Signing - Upload Image</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #121212; /* Black background */
+            color: white;
+            text-align: center;
+        }
+
+/* Navbar */
+.navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: linear-gradient(90deg, #1e1e1e, #333);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .navbar .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: #4ea8de;
+            letter-spacing: 1px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .navbar ul li {
+            display: inline;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: 0.3s;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+
+        .navbar ul li a:hover {
+            background: #4ea8de;
+            color: #121212;
+        }
+
+        /* Page Title */
+        .page-title {
+            font-size: 36px;
+            font-weight: 600;
+            margin-top: 70px;
+            margin-bottom: 30px;
+            color: #4ea8de;
+        }
+
+        /* Page Title */
+        .page-title {
+            font-size: 36px;
+            font-weight: 600;
+            margin-top: 70px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #4ea8de;
+        }
+
+        /* Upload Section */
+        .upload-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 70vh;
+        }
+
+        .upload-box {
+            width: 400px;
+            padding: 30px;
+            background: #1e1e1e;
+            border: 2px dashed #4ea8de;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .upload-box p {
+            color: #bbb;
+            margin-bottom: 15px;
+        }
+
+        .upload-box input {
+            display: none; /* Hide default file input */
+        }
+
+        .upload-btn {
+            padding: 12px 25px;
+            background: #4ea8de;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        .upload-btn:hover {
+            background: #3b8dc6;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">JUIT HELPSITE</div>
+        <ul>
+            <li><a href="homepage.html">Home</a></li> 
+            <li><a href="about.html">About</a></li>
+            <li><a href="outpass.html">Outpass Signing</a></li>
+            <li><a href="report.html">Reports</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Title -->
+    <h1 class="page-title">Outpass approval</h1>
+
+    <!-- Upload Section -->
+    <section class="upload-container">
+        <label for="file-upload" class="upload-box">
+            <p>Drag & Drop your outpass here or click to upload</p>
+            <input type="file" id="file-upload" accept="image/*">
+        </label>
+        <button class="upload-btn" id="uploadButton">Upload Image</button>
+
+    </section>
+
+</body>
+</html>
+</file>
+
+<file path="repomix-output.txt">
+This file is a merged representation of the entire codebase, combining all repository files into a single document.
+Generated by Repomix on: 2025-05-01T17:28:55.471Z
+
+================================================================
+File Summary
+================================================================
+
+Purpose:
+--------
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+
+File Format:
+------------
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Repository structure
+4. Multiple file entries, each consisting of:
+  a. A separator line (================)
+  b. The file path (File: path/to/file)
+  c. Another separator line
+  d. The full contents of the file
+  e. A blank line
+
+Usage Guidelines:
+-----------------
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+
+Notes:
+------
+- Some files may have been excluded based on .gitignore rules and Repomix's
+  configuration.
+- Binary files are not included in this packed representation. Please refer to
+  the Repository Structure section for a complete list of file paths, including
+  binary files.
+
+Additional Info:
+----------------
+
+For more information about Repomix, visit: https://github.com/yamadashy/repomix
+
+================================================================
+Repository Structure
+================================================================
+about.html
+contact.html
+homepage.html
+login.html
+outpass.html
+report.html
+student-portal-backend/config/db.js
+student-portal-backend/controllers/outpassController.js
+student-portal-backend/middleware/upload.js
+student-portal-backend/models/Outpass.js
+student-portal-backend/package.json
+student-portal-backend/routes/outpassRoutes.js
+student-portal-backend/routes/uploadR.js
+student-portal-backend/server.js
+
+================================================================
+Repository Files
+================================================================
+
+================
+File: about.html
+================
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #121212; /* Dark background */
+            color: white;
+            text-align: center;
+        }
+
+/* Navbar */
+.navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: linear-gradient(90deg, #1e1e1e, #333);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .navbar .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: #4ea8de;
+            letter-spacing: 1px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .navbar ul li {
+            display: inline;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: 0.3s;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+
+        .navbar ul li a:hover {
+            background: #4ea8de;
+            color: #121212;
+        }
+
+        /* Page Title */
+        .page-title {
+            font-size: 36px;
+            font-weight: 600;
+            margin-top: 70px;
+            margin-bottom: 30px;
+            color: #4ea8de;
+        }
+
+        /* Container for Image & Text */
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            max-width: 90%;
+            margin: 50px auto;
+        }
+
+        /* Image Section */
+        .hero-image img {
+            width: 80%;
+            max-width: 800px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Text Section */
+        .hero-text {
+            max-width: 75%;
+            text-align: center;
+            font-size: 20px;
+            line-height: 1.8;
+            color: #ccc;
+            background: #1e1e1e;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">JUIT HELPSITE</div>
+        <ul>
+            <li><a href="homepage.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="outpass.html">Outpass Signing</a></li> 
+            <li><a href="report.html">Reports</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Image & Text Section -->
+    <section class="content">
+        <div class="hero-image">
+            <img src="https://live.staticflickr.com/8640/15848488996_91ceb49b11_h.jpg=" alt="College Image">
+        </div>
+
+        <div class="hero-text">
+            <p>The proposed website serves as a comprehensive platform designed to streamline outpass approvals and address bullying concerns within a college campus.</p>
+            <p>The outpass module enables students to request permissions digitally, with automated notifications to designated authorities for swift approval. This reduces paperwork and ensures transparency in the process.</p>
+            <p>The bullying helpline module offers a secure and anonymous space for students to report incidents of harassment or bullying.</p>
+            <p>The platform emphasizes user-friendliness, data security, and quick response times, fostering a safer, more inclusive campus environment while improving administrative efficiency.</p>
+        </div>
+    </section>
+
+</body>
+</html>
+
+================
+File: contact.html
+================
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - JUIT Wardens</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #121212;
+            color: white;
+            text-align: center;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: linear-gradient(90deg, #1e1e1e, #333);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .navbar .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: #4ea8de;
+            letter-spacing: 1px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .navbar ul li {
+            display: inline;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: 0.3s;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+
+        .navbar ul li a:hover {
+            background: #4ea8de;
+            color: #121212;
+        }
+
+        /* Page Title */
+        .page-title {
+            font-size: 36px;
+            font-weight: 600;
+            margin-top: 70px;
+            margin-bottom: 30px;
+            color: #4ea8de;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            width: 60%;
+            margin: 0 auto;
+            padding: 20px;
+            background: #1e1e1e;
+            border-radius: 10px;
+        }
+
+        .contact-item {
+            margin: 15px 0;
+            padding: 15px;
+            border-bottom: 1px solid #4ea8de;
+        }
+
+        .contact-item:last-child {
+            border-bottom: none;
+        }
+
+        .contact-item h3 {
+            color: #4ea8de;
+            margin-bottom: 5px;
+        }
+
+        .contact-item p {
+            color: #bbb;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">JUIT HELPSITE</div>
+        <ul>
+            <li><a href="homepage.html">Home</a></li> 
+            <li><a href="about.html">About</a></li>
+            <li><a href="outpass.html">Outpass Signing</a></li>
+            <li><a href="report.html">Reports</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Title -->
+    <h1 class="page-title">Contact JUIT Wardens</h1>
+
+    <!-- Contact Information -->
+    <div class="contact-container">
+        <div class="contact-item">
+            <h3>Chief Warden</h3>
+            <p>Name: Dr. Rahul Shrivastava</p>
+            <p>Associate Professor, Department of BT&BI </p>
+            <p>Email: rahul.shrivastava@juitsolan.in;01792-239355 (O), 239531(R) Mob: 8894135634 </p>
+        </div>
+        <div class="contact-item">
+            <h3>Additional Chief Warden: Dr. Gopal Singh Bisht </h3>
+            <p>Associate Professor, Department of BT&BI</p>
+            <p>Email: gopal.singh@juitsolan.in; 01792-239220(O),  Mob: 8894135650 </p>
+        </div>
+        <div class="contact-item">
+            <h3>Dy. Chief Warden: Dr. Neelkanth</h3>
+            <p>Assistant Prof. (Sr Grade), Department of Mathematics</p>
+            <p>Email: neelkanth@juitsolan.in; 01792-239252 (O), 239517 (R) Mob: 8894227228</p>
+        </div>
+    </div>
+
+</body>
+</html>
+
+================
+File: homepage.html
+================
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+    .notification {
+        position: relative;
+    }
+    
+    .notification a {
+        font-size: 20px;
+        color: white;
+        transition: 0.3s;
+        padding: 8px;
+    }
+    
+    .notification a:hover {
+        color: #4ea8de;
+    }
+    
+    .badge {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background: red;
+        color: white;
+        font-size: 12px;
+        padding: 4px 8px;
+        border-radius: 50%;
+    }
+    
+    .notif-dropdown {
+        display: none;
+        position: absolute;
+        top: 30px;
+        right: 0;
+        background: #1e1e1e;
+        color: white;
+        width: 200px;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+    
+    .notif-dropdown p {
+        margin: 0;
+        padding: 10px;
+        border-bottom: 1px solid #4ea8de;
+    }
+    
+    .notif-dropdown p:last-child {
+        border-bottom: none;
+    }
+    
+    .show {
+        display: block;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+        background: #121212;
+        color: white;
+    }
+
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 50px;
+        background: linear-gradient(90deg, #1e1e1e, #333);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        position: relative;
+        z-index: 1;
+    }
+
+    .navbar .logo {
+        font-size: 26px;
+        font-weight: 700;
+        color: #4ea8de;
+        letter-spacing: 1px;
+    }
+
+    .navbar ul {
+        list-style: none;
+        display: flex;
+        gap: 25px;
+        align-items: center;
+    }
+
+    .navbar ul li {
+        display: inline;
+        position: relative;
+    }
+
+    .navbar ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        transition: 0.3s;
+        padding: 8px 15px;
+        border-radius: 5px;
+    }
+
+    .navbar ul li a:hover {
+        background: #4ea8de;
+        color: #121212;
+    }
+
+    .page-title {
+        font-size: 36px;
+        font-weight: 600;
+        margin-top: 70px;
+        margin-bottom: 30px;
+        color: #4ea8de;
+    }
+
+    .hero {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 80px 50px;
+    }
+
+    .hero-text {
+        flex: 1;
+        max-width: 50%;
+    }
+
+    .hero-text h1 {
+        font-size: 42px;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+
+    .hero-text p {
+        font-size: 15px;
+        color: #bbb;
+        margin-bottom: 20px;
+    }
+
+    .hero-text .btn {
+        padding: 12px 25px;
+        background: #4ea8de;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .hero-text .btn:hover {
+        background: #3b8dc6;
+    }
+
+    .hero-image {
+        flex: 1;
+        max-width: 50%;
+    }
+
+    .hero-image img {
+        width: 100%;
+        border-radius: 10px;
+    }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">JUIT HELPSITE</div>
+        <ul>
+            <li><a href="homepage.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="outpass.html">Outpass Signing</a></li>
+            <li><a href="report.html">Reports</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li class="notification">
+                <a href="#" id="notif-bell"><i class="fa-solid fa-bell"></i></a>
+                <span class="badge" id="notif-count">0</span>
+                <div class="notif-dropdown" id="notif-dropdown">
+                    <p>No new notifications</p>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-text">
+            <h1>We are here to help.</h1>
+            <p>Get your outpass approved conveniently or report restricted activities directly to the authorities concerned.</p>
+            <a href="outpass.html" class="btn">Outpass</a>
+            <a href="report.html" class="btn">Report</a>
+        </div>
+        <div class="hero-image">
+            <img src="https://media.istockphoto.com/id/1130476273/photo/signing-the-agreement-in-the-contract.jpg?s=612x612&w=0&k=20&c=NlA-eL5ELryzYJCG4HMRgliVG78gdYgw1bYyI_y9UdE=" alt="College Image">
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('notif-bell').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('notif-dropdown').classList.toggle('show');
+        });
+    </script>
+</body>
+</html>
+
+================
+File: login.html
+================
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/c/c9/Juit_o.jpg') no-repeat center center/cover;
+        }
+
+        .container {
+            display: flex;
+            width: 850px;
+            height: 500px;
+            background: rgba(8, 0, 0, 0.05);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(17, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .left {
+            flex: 1;
+            background: url('https://www.juit.ac.in/front/images/banner.jpg') no-repeat center center/cover;
+        }
+
+        .right {
+            flex: 1;
+            background: #000911;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: white;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 14px;
+            color: #bbb;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 14px;
+        }
+
+        input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .checkbox-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: #bbb;
+            margin-bottom: 20px;
+        }
+
+        .checkbox-group div {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap;    
+        }
+
+         .checkbox-group a {
+            color: #4ea8de;
+            text-decoration: none;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #4ea8de;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #3b8dc6;
+        }
+
+        .google-btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #4285f4;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .google-btn:hover {
+            background: #357ae8;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #bbb;
+            margin-top: 20px;
+        }
+
+        .footer a {
+            color: #4ea8de;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left"></div>
+        <div class="right">
+            <h2>Sign In</h2>
+            <div class="input-group">
+                <label for="email">Your email</label>
+                <input type="email" id="email" placeholder="Enter your email">
+            </div>
+            <div class="input-group">
+                <label for="password">Your password</label>
+                <input type="password" id="password" placeholder="Enter your password">
+            </div>
+            <div class="checkbox-group">
+                <div>
+                    <input type="checkbox" id="keep-logged">
+                    <label for="keep-logged">Stay logged in</label>
+                </div>
+                <a href="#">Forgot password?</a>
+            </div>
+            <a href="homepage.html"><button class="google-btn">SIGN IN</button></a>            
+            <button class="google-btn">SIGN IN WITH GOOGLE</button>
+            <div class="footer">
+                <p>Privacy • Terms • About</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+================
+File: outpass.html
+================
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outpass Signing - Upload Image</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #121212; /* Black background */
+            color: white;
+            text-align: center;
+        }
+
+/* Navbar */
+.navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: linear-gradient(90deg, #1e1e1e, #333);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .navbar .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: #4ea8de;
+            letter-spacing: 1px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .navbar ul li {
+            display: inline;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: 0.3s;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+
+        .navbar ul li a:hover {
+            background: #4ea8de;
+            color: #121212;
+        }
+
+        /* Page Title */
+        .page-title {
+            font-size: 36px;
+            font-weight: 600;
+            margin-top: 70px;
+            margin-bottom: 30px;
+            color: #4ea8de;
+        }
+
+        /* Page Title */
+        .page-title {
+            font-size: 36px;
+            font-weight: 600;
+            margin-top: 70px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #4ea8de;
+        }
+
+        /* Upload Section */
+        .upload-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 70vh;
+        }
+
+        .upload-box {
+            width: 400px;
+            padding: 30px;
+            background: #1e1e1e;
+            border: 2px dashed #4ea8de;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .upload-box p {
+            color: #bbb;
+            margin-bottom: 15px;
+        }
+
+        .upload-box input {
+            display: none; /* Hide default file input */
+        }
+
+        .upload-btn {
+            padding: 12px 25px;
+            background: #4ea8de;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        .upload-btn:hover {
+            background: #3b8dc6;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">JUIT HELPSITE</div>
+        <ul>
+            <li><a href="homepage.html">Home</a></li> 
+            <li><a href="about.html">About</a></li>
+            <li><a href="outpass.html">Outpass Signing</a></li>
+            <li><a href="report.html">Reports</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Title -->
+    <h1 class="page-title">Outpass approval</h1>
+
+    <!-- Upload Section -->
+    <section class="upload-container">
+        <label for="file-upload" class="upload-box">
+            <p>Drag & Drop your outpass here or click to upload</p>
+            <input type="file" id="file-upload" accept="image/*">
+        </label>
+        <button class="upload-btn" id="uploadButton">Upload Image</button>
+
+    </section>
+
+</body>
+</html>
+
+================
+File: report.html
+================
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Bullying</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #121212;
+            color: white;
+        }
+
+/* Navbar */
+.navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: linear-gradient(90deg, #1e1e1e, #333);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .navbar .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: #4ea8de;
+            letter-spacing: 1px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .navbar ul li {
+            display: inline;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: 0.3s;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+
+        .navbar ul li a:hover {
+            background: #4ea8de;
+            color: #121212;
+        }
+
+        /* Page Title */
+        .page-title {
+            font-size: 36px;
+            font-weight: 600;
+            margin-top: 70px;
+            margin-bottom: 30px;
+            color: #4ea8de;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background: #1e1e1e;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #333;
+            color: white;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #4ea8de;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #3b8dc6;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">JUIT HELPSITE</div>
+        <ul>
+            <li><a href="homepage.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="outpass.html">Outpass Signing</a></li>
+            <li><a href="report.html">Reports</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h2>Report Bullying</h2>
+        <form action="#" method="POST">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name">
+
+            <label for="rollno">Roll No</label>
+            <input type="text" id="rollno" name="rollno" placeholder="Enter your roll number">
+
+            <label for="room">Room Number</label>
+            <input type="text" id="room" name="room" placeholder="Enter your room number" required>
+
+            <label for="year">College Year</label>
+            <input type="text" id="year" name="year" placeholder="Enter your college year" required>
+
+            <label for="hostel">Hostel Number</label>
+            <input type="text" id="hostel" name="hostel" placeholder="Enter your hostel number" required>
+
+            <label for="description">Description of Bullying</label>
+            <textarea id="description" name="description" rows="5" placeholder="Describe the bullying incident in detail" required></textarea>
+
+            <button type="submit">Submit Report</button>
+        </form>
+    </div>
+</body>
+</html>
+
+================
+File: student-portal-backend/config/db.js
+================
+const mongoose = require('mongoose');
+
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log('✅ MongoDB connected successfully');
+  } catch (error) {
+    console.error('❌ MongoDB connection error:', error.message);
+    process.exit(1);
+  }
+};
+
+module.exports = connectDB;
+
+================
+File: student-portal-backend/controllers/outpassController.js
+================
+const Outpass = require('../models/Outpass');
+
+// Submit a new outpass request
+exports.createOutpass = async (req, res) => {
+    const Outpass = require('../models/Outpass');
+
+    exports.createOutpass = async (req, res) => {
+      try {
+        const { studentId, name, reason, fromDate, toDate } = req.body;
+        const imagePath = req.file ? req.file.path : null;
+    
+        const newOutpass = new Outpass({
+          studentId,
+          name,
+          reason,
+          fromDate,
+          toDate,
+          image: imagePath
+        });
+    
+        await newOutpass.save();
+        res.status(201).json({ message: 'Outpass submitted with image', outpass: newOutpass });
+      } catch (error) {
+        res.status(500).json({ error: error.message });
+      }
+    };
+    
+};
+
+// Get all outpasses
+exports.getAllOutpasses = async (req, res) => {
+  try {
+    const outpasses = await Outpass.find();
+    res.json(outpasses);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+// Update the status of an outpass
+exports.updateOutpassStatus = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+    const updatedOutpass = await Outpass.findByIdAndUpdate(id, { status }, { new: true });
+    res.json({ message: 'Outpass status updated', outpass: updatedOutpass });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+================
+File: student-portal-backend/middleware/upload.js
+================
+const multer = require('multer');
+const path = require('path');
+
+// Configure storage
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/');
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    cb(null, uniqueSuffix + path.extname(file.originalname));
+  }
+});
+
+// Filter only images
+const fileFilter = (req, file, cb) => {
+  const allowedTypes = /jpeg|jpg|png|pdf/;
+  const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
+  if (extname) {
+    cb(null, true);
+  } else {
+    cb(new Error('Only images or PDFs are allowed'));
+  }
+};
+
+const upload = multer({ storage: storage, fileFilter });
+
+module.exports = upload;
+
+================
+File: student-portal-backend/models/Outpass.js
+================
+const mongoose = require('mongoose');
+
+const OutpassSchema = new mongoose.Schema({
+  studentId: { type: String, required: true },
+  name: { type: String, required: true },
+  reason: { type: String, required: true },
+  fromDate: { type: Date, required: true },
+  toDate: { type: Date, required: true },
+  status: { type: String, default: 'Pending' }, // Options: Pending, Approved, Rejected
+  createdAt: { type: Date, default: Date.now },
+  image: { type: String }, // Path to the uploaded file
+});
+
+module.exports = mongoose.model('Outpass', OutpassSchema);
+
+================
+File: student-portal-backend/package.json
+================
+{
+  "name": "student-portal-backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mongoose": "^8.13.2",
+    "multer": "^1.4.5-lts.2"
+  }
+}
+
+================
+File: student-portal-backend/routes/outpassRoutes.js
+================
+const express = require('express');
+const router = express.Router();
+const upload = require('../middleware/upload'); // Multer config
+
+const {
+  createOutpass,
+  getAllOutpasses,
+  updateOutpassStatus,
+} = require('../controllers/outpassController');
+
+// @route   POST /api/outpass/create
+// @desc    Submit a new outpass with an image
+router.post('/create', upload.single('image'), createOutpass);
+
+// @route   GET /api/outpass
+// @desc    Get all outpasses
+router.get('/', getAllOutpasses);
+
+// @route   PUT /api/outpass/:id
+// @desc    Update outpass status
+router.put('/:id', updateOutpassStatus);
+
+module.exports = router;
+
+================
+File: student-portal-backend/routes/uploadR.js
+================
+const express = require('express');
+const multer = require('multer');
+const path = require('path');
+const router = express.Router();
+
+console.log("✅ uploadR.js loaded");
+
+// Multer config
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/');
+  },
+  filename: function (req, file, cb) {
+    const uniqueName = Date.now() + '-' + file.originalname;
+    cb(null, uniqueName);
+  }
+});
+
+const upload = multer({ storage });
+
+// POST /api/upload
+router.post('/', upload.single('file'), (req, res) => {
+  console.log("✅ Upload route hit!");
+
+  if (!req.file) {
+    return res.status(400).json({ message: 'No file uploaded' });
+  }
+
+  res.json({
+    message: '✅ Image uploaded successfully',
+    filename: req.file.filename,
+    path: `/uploads/${req.file.filename}`
+  });
+});
+
+module.exports = router;
+
+================
+File: student-portal-backend/server.js
+================
+// server.js
+
+console.log("✅ Starting server...");
+
+const express = require('express');
+const dotenv = require('dotenv');
+const cors = require('cors');
+const connectDB = require('./config/db');
+
+// Load environment variables from .env file
+dotenv.config();
+
+// Connect to MongoDB
+console.log("Connecting to DB...");
+connectDB();
+
+const app = express();
+
+// Middleware
+app.use(cors());
+app.use(express.json()); // Parse JSON bodies
+
+// Serve static files (like uploaded images)
+app.use('/uploads', express.static('uploads'));
+
+// Test route to confirm server is running
+app.get('/', (req, res) => {
+  res.send('✅ Server is up and running!');
+});
+
+// Routes
+app.use('/api/outpass', require('./routes/outpassRoutes'));
+app.use('/api/upload', require('./routes/uploadR'));
+
+// Catch-all for undefined routes
+app.use((req, res) => {
+  res.status(404).send('❌ Route not found');
+});
+
+// Start server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`✅ Server running on http://localhost:${PORT}`);
+});
+</file>
+
+<file path="report.html">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Bullying</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #121212;
+            color: white;
+        }
+
+/* Navbar */
+.navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: linear-gradient(90deg, #1e1e1e, #333);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .navbar .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: #4ea8de;
+            letter-spacing: 1px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .navbar ul li {
+            display: inline;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: 0.3s;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+
+        .navbar ul li a:hover {
+            background: #4ea8de;
+            color: #121212;
+        }
+
+        /* Page Title */
+        .page-title {
+            font-size: 36px;
+            font-weight: 600;
+            margin-top: 70px;
+            margin-bottom: 30px;
+            color: #4ea8de;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background: #1e1e1e;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #333;
+            color: white;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #4ea8de;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #3b8dc6;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">JUIT HELPSITE</div>
+        <ul>
+            <li><a href="homepage.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="outpass.html">Outpass Signing</a></li>
+            <li><a href="report.html">Reports</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h2>Report Bullying</h2>
+        <form action="#" method="POST">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name">
+
+            <label for="rollno">Roll No</label>
+            <input type="text" id="rollno" name="rollno" placeholder="Enter your roll number">
+
+            <label for="room">Room Number</label>
+            <input type="text" id="room" name="room" placeholder="Enter your room number" required>
+
+            <label for="year">College Year</label>
+            <input type="text" id="year" name="year" placeholder="Enter your college year" required>
+
+            <label for="hostel">Hostel Number</label>
+            <input type="text" id="hostel" name="hostel" placeholder="Enter your hostel number" required>
+
+            <label for="description">Description of Bullying</label>
+            <textarea id="description" name="description" rows="5" placeholder="Describe the bullying incident in detail" required></textarea>
+
+            <button type="submit">Submit Report</button>
+        </form>
+    </div>
+</body>
+</html>
+</file>
+
+<file path="student-portal-backend/config/db.js">
+const mongoose = require('mongoose');
+
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log('✅ MongoDB connected successfully');
+  } catch (error) {
+    console.error('❌ MongoDB connection error:', error.message);
+    process.exit(1);
+  }
+};
+
+module.exports = connectDB;
+</file>
+
+<file path="student-portal-backend/controllers/outpassController.js">
+const Outpass = require('../models/Outpass');
+
+// Submit a new outpass request
+exports.createOutpass = async (req, res) => {
+    const Outpass = require('../models/Outpass');
+
+    exports.createOutpass = async (req, res) => {
+      try {
+        const { studentId, name, reason, fromDate, toDate } = req.body;
+        const imagePath = req.file ? req.file.path : null;
+    
+        const newOutpass = new Outpass({
+          studentId,
+          name,
+          reason,
+          fromDate,
+          toDate,
+          image: imagePath
+        });
+    
+        await newOutpass.save();
+        res.status(201).json({ message: 'Outpass submitted with image', outpass: newOutpass });
+      } catch (error) {
+        res.status(500).json({ error: error.message });
+      }
+    };
+    
+};
+
+// Get all outpasses
+exports.getAllOutpasses = async (req, res) => {
+  try {
+    const outpasses = await Outpass.find();
+    res.json(outpasses);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+// Update the status of an outpass
+exports.updateOutpassStatus = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+    const updatedOutpass = await Outpass.findByIdAndUpdate(id, { status }, { new: true });
+    res.json({ message: 'Outpass status updated', outpass: updatedOutpass });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+</file>
+
+<file path="student-portal-backend/middleware/upload.js">
+const multer = require('multer');
+const path = require('path');
+
+// Configure storage
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/');
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    cb(null, uniqueSuffix + path.extname(file.originalname));
+  }
+});
+
+// Filter only images
+const fileFilter = (req, file, cb) => {
+  const allowedTypes = /jpeg|jpg|png|pdf/;
+  const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
+  if (extname) {
+    cb(null, true);
+  } else {
+    cb(new Error('Only images or PDFs are allowed'));
+  }
+};
+
+const upload = multer({ storage: storage, fileFilter });
+
+module.exports = upload;
+</file>
+
+<file path="student-portal-backend/models/Outpass.js">
+const mongoose = require('mongoose');
+
+const OutpassSchema = new mongoose.Schema({
+  studentId: { type: String, required: true },
+  name: { type: String, required: true },
+  reason: { type: String, required: true },
+  fromDate: { type: Date, required: true },
+  toDate: { type: Date, required: true },
+  status: { type: String, default: 'Pending' }, // Options: Pending, Approved, Rejected
+  createdAt: { type: Date, default: Date.now },
+  image: { type: String }, // Path to the uploaded file
+});
+
+module.exports = mongoose.model('Outpass', OutpassSchema);
+</file>
+
+<file path="student-portal-backend/package.json">
+{
+  "name": "student-portal-backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mongoose": "^8.13.2",
+    "multer": "^1.4.5-lts.2"
+  }
+}
+</file>
+
+<file path="student-portal-backend/routes/outpassRoutes.js">
+const express = require('express');
+const router = express.Router();
+const upload = require('../middleware/upload'); // Multer config
+
+const {
+  createOutpass,
+  getAllOutpasses,
+  updateOutpassStatus,
+} = require('../controllers/outpassController');
+
+// @route   POST /api/outpass/create
+// @desc    Submit a new outpass with an image
+router.post('/create', upload.single('image'), createOutpass);
+
+// @route   GET /api/outpass
+// @desc    Get all outpasses
+router.get('/', getAllOutpasses);
+
+// @route   PUT /api/outpass/:id
+// @desc    Update outpass status
+router.put('/:id', updateOutpassStatus);
+
+module.exports = router;
+</file>
+
+<file path="student-portal-backend/routes/uploadR.js">
+const express = require('express');
+const multer = require('multer');
+const path = require('path');
+const router = express.Router();
+
+console.log("✅ uploadR.js loaded");
+
+// Multer config
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/');
+  },
+  filename: function (req, file, cb) {
+    const uniqueName = Date.now() + '-' + file.originalname;
+    cb(null, uniqueName);
+  }
+});
+
+const upload = multer({ storage });
+
+// POST /api/upload
+router.post('/', upload.single('file'), (req, res) => {
+  console.log("✅ Upload route hit!");
+
+  if (!req.file) {
+    return res.status(400).json({ message: 'No file uploaded' });
+  }
+
+  res.json({
+    message: '✅ Image uploaded successfully',
+    filename: req.file.filename,
+    path: `/uploads/${req.file.filename}`
+  });
+});
+
+module.exports = router;
+</file>
+
+<file path="student-portal-backend/server.js">
+// server.js
+
+console.log("✅ Starting server...");
+
+const express = require('express');
+const dotenv = require('dotenv');
+const cors = require('cors');
+const connectDB = require('./config/db');
+
+// Load environment variables from .env file
+dotenv.config();
+
+// Connect to MongoDB
+console.log("Connecting to DB...");
+connectDB();
+
+const app = express();
+
+// Middleware
+app.use(cors());
+app.use(express.json()); // Parse JSON bodies
+
+// Serve static files (like uploaded images)
+app.use('/uploads', express.static('uploads'));
+
+// Test route to confirm server is running
+app.get('/', (req, res) => {
+  res.send('✅ Server is up and running!');
+});
+
+// Routes
+app.use('/api/outpass', require('./routes/outpassRoutes'));
+app.use('/api/upload', require('./routes/uploadR'));
+
+// Catch-all for undefined routes
+app.use((req, res) => {
+  res.status(404).send('❌ Route not found');
+});
+
+// Start server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`✅ Server running on http://localhost:${PORT}`);
+});
+</file>
+
+</files>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #121212; /* Dark background */
+            color: white;
+            text-align: center;
+        }
+
+/* Navbar */
+.navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: linear-gradient(90deg, #1e1e1e, #333);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .navbar .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: #4ea8de;
+            letter-spacing: 1px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .navbar ul li {
+            display: inline;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: 0.3s;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+
+        .navbar ul li a:hover {
+            background: #4ea8de;
+            color: #121212;
+        }
+
+        /* Page Title */
+        .page-title {
+            font-size: 36px;
+            font-weight: 600;
+            margin-top: 70px;
+            margin-bottom: 30px;
+            color: #4ea8de;
+        }
+
+        /* Container for Image & Text */
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            max-width: 90%;
+            margin: 50px auto;
+        }
+
+        /* Image Section */
+        .hero-image img {
+            width: 80%;
+            max-width: 800px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Text Section */
+        .hero-text {
+            max-width: 75%;
+            text-align: center;
+            font-size: 20px;
+            line-height: 1.8;
+            color: #ccc;
+            background: #1e1e1e;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">JUIT HELPSITE</div>
+        <ul>
+            <li><a href="homepage.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="outpass.html">Outpass Signing</a></li> 
+            <li><a href="report.html">Reports</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Image & Text Section -->
+    <section class="content">
+        <div class="hero-image">
+            <img src="https://live.staticflickr.com/8640/15848488996_91ceb49b11_h.jpg=" alt="College Image">
+        </div>
+
+        <div class="hero-text">
+            <p>The proposed website serves as a comprehensive platform designed to streamline outpass approvals and address bullying concerns within a college campus.</p>
+            <p>The outpass module enables students to request permissions digitally, with automated notifications to designated authorities for swift approval. This reduces paperwork and ensures transparency in the process.</p>
+            <p>The bullying helpline module offers a secure and anonymous space for students to report incidents of harassment or bullying.</p>
+            <p>The platform emphasizes user-friendliness, data security, and quick response times, fostering a safer, more inclusive campus environment while improving administrative efficiency.</p>
+        </div>
+    </section>
+
+</body>
+</html>

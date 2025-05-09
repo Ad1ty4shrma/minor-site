@@ -1,0 +1,465 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+4. Repository files, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+<additional_info>
+
+</additional_info>
+
+</file_summary>
+
+<directory_structure>
+config/db.js
+controllers/outpassController.js
+controllers/reportc.js
+middleware/upload.js
+models/bullyingrp.js
+models/Outpass.js
+package.json
+routes/outpassRoutes.js
+routes/reportr.js
+server.js
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="config/db.js">
+const mongoose = require('mongoose');
+
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log('✅ MongoDB connected successfully');
+  } catch (error) {
+    console.error('❌ MongoDB connection error:', error.message);
+    process.exit(1);
+  }
+};
+
+module.exports = connectDB;
+</file>
+
+<file path="controllers/outpassController.js">
+// student-portal-backend/controllers/outpassController.js
+
+// Ensure the Outpass model is required at the top
+const Outpass = require('../models/Outpass');
+
+// Submit a new outpass request
+exports.createOutpass = async (req, res) => {
+  // Log entry into the function with timestamp
+  console.log(`ROUTE: /api/outpass/create - START - ${new Date().toISOString()}`);
+  try {
+    // Log the received text body and file info
+    console.log("ROUTE: Received body:", req.body);
+    console.log("ROUTE: Received file:", req.file); // This will be null if no file uploaded
+
+    // Destructure data from the request body
+    const { studentId, name, reason, fromDate, toDate } = req.body;
+    // Get the file path from multer (if a file was uploaded)
+    const imagePath = req.file ? req.file.path : null;
+
+    // Basic validation for required text fields
+    if (!studentId || !name || !reason || !fromDate || !toDate) {
+        console.log("VALIDATION: Missing required fields");
+        // Send a 400 Bad Request response if fields are missing
+        return res.status(400).json({ message: 'Missing required fields' });
+    }
+
+    // Optional: Add validation for image presence if it's mandatory
+    // if (!imagePath) {
+    //     console.log("VALIDATION: Missing image file");
+    //     return res.status(400).json({ message: 'Image file is required' });
+    // } else {
+    //     console.log(`VALIDATION: Image path found: ${imagePath}`);
+    // }
+
+    // Log before creating the Mongoose model instance
+    console.log(`DB: Creating new Outpass instance... - ${new Date().toISOString()}`);
+    const newOutpass = new Outpass({
+      studentId,
+      name,
+      reason,
+      fromDate, // Assuming these are valid Date strings or Date objects
+      toDate,   // Mongoose will try to cast them
+      image: imagePath, // Path from multer or null
+      // status defaults to 'Pending' as per schema
+    });
+    // console.log("DB: Instance created:", newOutpass); // Optional: Log the full instance details if needed
+
+    // Log right before attempting the database save operation
+    console.log(`DB: Attempting to save outpass... - ${new Date().toISOString()}`);
+    // Use await to wait for the save operation to complete
+    await newOutpass.save(); // <-- Potential hang point
+    // Log successful save operation with the new document ID
+    console.log(`DB: Outpass saved successfully. ID: ${newOutpass._id} - ${new Date().toISOString()}`);
+
+    // Log before sending the successful response back to the client
+    console.log(`RESPONSE: Sending 201 response... - ${new Date().toISOString()}`);
+    // Send a 201 Created status and the newly created outpass object
+    res.status(201).json({ message: 'Outpass submitted successfully', outpass: newOutpass });
+    // Log after the response has been sent (or at least handed off to the OS)
+    console.log(`RESPONSE: Sent 201. - ${new Date().toISOString()}`);
+
+  } catch (error) {
+    // Log any error that occurs during the try block
+    console.error(`ERROR in /api/outpass/create: ${error.message} - ${new Date().toISOString()}`, error.stack); // Log the full error stack
+    // Send a 500 Internal Server Error response
+    // Avoid sending the raw error message in production for security, but ok for debugging
+    res.status(500).json({ message: 'Server error creating outpass', error: error.message });
+  }
+};
+
+// Get all outpasses
+exports.getAllOutpasses = async (req, res) => {
+  console.log(`ROUTE: /api/outpass (GET) - START - ${new Date().toISOString()}`);
+  try {
+    console.log(`DB: Finding all outpasses... - ${new Date().toISOString()}`);
+    const outpasses = await Outpass.find();
+    console.log(`DB: Found ${outpasses.length} outpasses. - ${new Date().toISOString()}`);
+
+    console.log(`RESPONSE: Sending 200 response... - ${new Date().toISOString()}`);
+    res.status(200).json(outpasses); // Send 200 OK with the data
+    console.log(`RESPONSE: Sent 200. - ${new Date().toISOString()}`);
+  } catch (error) {
+    console.error(`ERROR in /api/outpass (GET): ${error.message} - ${new Date().toISOString()}`, error.stack);
+    res.status(500).json({ message: 'Server error fetching outpasses', error: error.message });
+  }
+};
+
+// Update the status of an outpass
+exports.updateOutpassStatus = async (req, res) => {
+  // Use req.params.id for route parameters
+  const { id } = req.params;
+  console.log(`ROUTE: /api/outpass/${id} (PUT) - START - ${new Date().toISOString()}`);
+  try {
+    const { status } = req.body;
+    console.log("ROUTE: Received body for update:", req.body);
+
+    // Basic validation for the status field
+    const allowedStatuses = ['Pending', 'Approved', 'Rejected'];
+    if (!status || !allowedStatuses.includes(status)) {
+         console.log(`VALIDATION: Invalid status value received: ${status}`);
+         return res.status(400).json({ message: `Invalid status value. Must be one of: ${allowedStatuses.join(', ')}` });
+    }
+
+    console.log(`DB: Attempting to update outpass ID: ${id} with status: ${status} - ${new Date().toISOString()}`);
+    // Find by ID and update, { new: true } returns the updated document
+    const updatedOutpass = await Outpass.findByIdAndUpdate(id, { status }, { new: true });
+
+    // Check if an outpass was actually found and updated
+    if (!updatedOutpass) {
+        console.log(`DB: Outpass with ID: ${id} not found for update. - ${new Date().toISOString()}`);
+        return res.status(404).json({ message: 'Outpass not found' });
+    }
+
+    console.log(`DB: Outpass ID: ${id} updated successfully. - ${new Date().toISOString()}`);
+    console.log(`RESPONSE: Sending 200 response... - ${new Date().toISOString()}`);
+    res.status(200).json({ message: 'Outpass status updated successfully', outpass: updatedOutpass }); // Send 200 OK
+    console.log(`RESPONSE: Sent 200. - ${new Date().toISOString()}`);
+
+  } catch (error) {
+    console.error(`ERROR in /api/outpass/${id} (PUT): ${error.message} - ${new Date().toISOString()}`, error.stack);
+    res.status(500).json({ message: 'Server error updating outpass status', error: error.message });
+  }
+};
+</file>
+
+<file path="controllers/reportc.js">
+// student-portal-backend/controllers/reportController.js
+const BullyingReport = require('../models/bullyingrp');
+
+// Submit a new bullying report
+exports.submitReport = async (req, res) => {
+  try {
+    // Extract data from the request body
+    const { name, rollno, room, year, hostel, description } = req.body;
+
+    // Basic validation (Mongoose schema handles most required fields)
+    if (!description || !room || !year || !hostel) {
+       // This check is slightly redundant due to schema but good practice
+       return res.status(400).json({ message: 'Missing required report fields (room, year, hostel, description).' });
+    }
+
+    // Create a new report instance
+    const newReport = new BullyingReport({
+      name,       // Will be null/undefined if not provided
+      rollno,     // Will be null/undefined if not provided
+      room,
+      year,
+      hostel,
+      description
+    });
+
+    // Save the report to the database
+    await newReport.save();
+
+    // Send success response
+    res.status(201).json({ message: 'Report submitted successfully.', report: newReport });
+
+  } catch (error) {
+    console.error('Error submitting report:', error);
+    // Handle potential validation errors from Mongoose
+    if (error.name === 'ValidationError') {
+        return res.status(400).json({ message: 'Validation Error', errors: error.errors });
+    }
+    // Generic server error
+    res.status(500).json({ message: 'Server error while submitting report.', error: error.message });
+  }
+};
+
+// Optional: Add functions later to get reports (e.g., for an admin panel)
+// exports.getAllReports = async (req, res) => { ... };
+</file>
+
+<file path="middleware/upload.js">
+const multer = require('multer');
+const path = require('path');
+
+// Configure storage
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/');
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    cb(null, uniqueSuffix + path.extname(file.originalname));
+  }
+});
+
+// Filter only images
+const fileFilter = (req, file, cb) => {
+  const allowedTypes = /jpeg|jpg|png|pdf/;
+  const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
+  if (extname) {
+    cb(null, true);
+  } else {
+    cb(new Error('Only images or PDFs are allowed'));
+  }
+};
+
+const upload = multer({ storage: storage, fileFilter });
+
+module.exports = upload;
+</file>
+
+<file path="models/bullyingrp.js">
+// student-portal-backend/models/BullyingReport.js
+const mongoose = require('mongoose');
+
+const BullyingReportSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: false // Assuming name might be optional for anonymity
+  },
+  rollno: {
+    type: String,
+    required: false // Assuming roll number might be optional
+  },
+  room: {
+    type: String,
+    required: [true, 'Room number is required'] // Match HTML 'required'
+  },
+  year: {
+    type: String,
+    required: [true, 'College year is required'] // Match HTML 'required'
+  },
+  hostel: {
+    type: String,
+    required: [true, 'Hostel number is required'] // Match HTML 'required'
+  },
+  description: {
+    type: String,
+    required: [true, 'Description of the incident is required'] // Match HTML 'required'
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  },
+  // Optional: You might add a status field later (e.g., 'Received', 'Investigating')
+  // status: { type: String, default: 'Received' }
+});
+
+module.exports = mongoose.model('BullyingReport', BullyingReportSchema);
+</file>
+
+<file path="models/Outpass.js">
+const mongoose = require('mongoose');
+
+const OutpassSchema = new mongoose.Schema({
+  studentId: { type: String, required: true },
+  name: { type: String, required: true },
+  reason: { type: String, required: true },
+  fromDate: { type: Date, required: true },
+  toDate: { type: Date, required: true },
+  status: { type: String, default: 'Pending' }, // Options: Pending, Approved, Rejected
+  createdAt: { type: Date, default: Date.now },
+  image: { type: String }, // Path to the uploaded file
+});
+
+module.exports = mongoose.model('Outpass', OutpassSchema);
+</file>
+
+<file path="package.json">
+{
+  "name": "student-portal-backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mongoose": "^8.13.2",
+    "multer": "^1.4.5-lts.2"
+  }
+}
+</file>
+
+<file path="routes/outpassRoutes.js">
+const express = require('express');
+const router = express.Router();
+const upload = require('../middleware/upload'); // Multer config
+
+const {
+  createOutpass,
+  getAllOutpasses,
+  updateOutpassStatus,
+} = require('../controllers/outpassController');
+
+// @route   POST /api/outpass/create
+// @desc    Submit a new outpass with an image
+router.post('/create', upload.single('image'), createOutpass);
+
+// @route   GET /api/outpass
+// @desc    Get all outpasses
+router.get('/', getAllOutpasses);
+
+// @route   PUT /api/outpass/:id
+// @desc    Update outpass status
+router.put('/:id', updateOutpassStatus);
+
+module.exports = router;
+</file>
+
+<file path="routes/reportr.js">
+// student-portal-backend/routes/reportRoutes.js
+const express = require('express');
+const router = express.Router();
+const { submitReport } = require('../controllers/reportc'); // Import the controller function
+
+// @route   POST /api/reports/submit
+// @desc    Submit a new bullying report
+// @access  Public (adjust access later if authentication is added)
+router.post('/submit', submitReport);
+
+// Optional: Add GET route later if needed for admins
+// router.get('/', getAllReports);
+
+module.exports = router;
+</file>
+
+<file path="server.js">
+// server.js
+
+console.log("✅ Starting server...");
+
+const express = require('express');
+const dotenv = require('dotenv');
+const cors = require('cors');
+const connectDB = require('./config/db');
+
+// Load environment variables from .env file
+dotenv.config();
+
+// Connect to MongoDB
+console.log("Connecting to DB...");
+connectDB();
+
+const app = express();
+
+// Middleware
+app.use(cors());
+app.use(express.json()); // Parse JSON bodies
+
+// Serve static files (like uploaded images)
+// Make sure the 'uploads' directory exists at the root of student-portal-backend
+app.use('/uploads', express.static('uploads'));
+
+// Test route to confirm server is running
+app.get('/', (req, res) => {
+  res.send('✅ Server is up and running!');
+});
+
+// Routes
+// The main route for outpass operations, including uploads via its '/create' endpoint
+app.use('/api/outpass', require('./routes/outpassRoutes'));
+
+// REMOVED: The redundant upload route is no longer used
+// app.use('/api/upload', require('./routes/uploadR')); // <--- DELETE OR COMMENT OUT THIS LINE
+
+// Catch-all for undefined routes
+app.use((req, res) => {
+  // Consider sending a JSON response for API consistency
+  res.status(404).json({ message: '❌ Route not found' });
+});
+// student-portal-backend/server.js
+// ... other require statements ...
+// ... other middleware (cors, express.json, static) ...
+
+app.use('/api/outpass', require('./routes/outpassRoutes'));
+app.use('/api/reports', require('./routes/reportr')); // <--- ADD THIS LINE
+
+// ... catch-all route and app.listen ...
+
+// Start server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`✅ Server running on http://localhost:${PORT}`);
+});
+</file>
+
+</files>

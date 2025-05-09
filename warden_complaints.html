@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Warden Dashboard - Student Complaints</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        /* Reset & Fonts */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #121212; /* Dark background */
+            color: white; /* Light text */
+        }
+
+        /* Navbar - Styled like homepage.html */
+        .navbar {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 20px 50px;
+          background: linear-gradient(90deg, #1e1e1e, #333);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+          position: sticky; /* Keep sticky navbar */
+          top: 0;
+          z-index: 10;
+        }
+
+        .navbar .logo a {
+          font-size: 22px;
+          font-weight: 700;
+          color: #4ea8de; /* Accent color */
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+        }
+
+        .navbar ul {
+          display: flex;
+          list-style: none;
+          gap: 25px;
+          align-items: center;
+        }
+
+        .navbar ul li a {
+          color: white;
+          text-decoration: none;
+          font-size: 16px;
+          font-weight: 500;
+          transition: background 0.3s, color 0.3s;
+          padding: 8px 15px;
+          border-radius: 5px;
+        }
+
+        .navbar ul li a:hover,
+        .navbar ul li a.active {
+          background: #4ea8de; /* Accent background */
+          color: #121212; /* Dark text */
+        }
+
+
+        /* Page Title */
+        .page-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #4ea8de; /* Accent color */
+            margin: 40px 50px 10px; /* Adjust margins */
+            text-align: left;
+        }
+
+        /* Summary Text */
+        .summary {
+            margin: 0 50px 20px;
+            font-size: 16px;
+            color: #bbb; /* Lighter text */
+        }
+
+
+        /* Table Container - Dark Theme */
+        .table-container {
+            margin: 0 50px 30px; /* Match padding */
+            background: #1e1e1e; /* Slightly lighter dark */
+            border-radius: 8px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+            overflow-x: auto; /* For responsiveness */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 15px;
+            min-width: 700px;
+        }
+
+        th, td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid #333; /* Dark border */
+        }
+
+        thead {
+             background: #2a2a2a; /* Darker header */
+        }
+        th {
+            color: #4ea8de; /* Accent color */
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+        tbody tr:last-child td {
+             border-bottom: none;
+        }
+
+        tbody tr:hover {
+            background-color: #282828; /* Subtle hover */
+        }
+        td.complaint-description { /* For better wrapping */
+            white-space: pre-wrap; /* Allows wrapping but respects newlines */
+            word-break: break-word;
+        }
+
+
+        /* Source Note */
+        .source-note {
+             margin: 0 50px 40px;
+             font-size: 14px;
+             color: #aaa;
+        }
+        .source-note a {
+            color: #4ea8de; /* Accent color for link */
+            text-decoration: none;
+        }
+        .source-note a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .navbar ul {
+                 margin-top: 15px;
+                 gap: 15px;
+            }
+             .page-title, .summary, .table-container, .source-note {
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+            .page-title {
+                font-size: 28px;
+                margin-top: 30px;
+            }
+            table, th, td {
+                font-size: 14px;
+                padding: 12px 15px;
+            }
+            th {
+                font-size: 13px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo"><a href="warden.html"><i class="fas fa-university" style="margin-right: 8px;"></i> JUIT HELPSITE - Warden</a></div>
+        <ul>
+            <li><a href="warden_outpass.html">Outpass Requests</a></li>
+            <li><a href="warden_complaints.html" class="active">Student Complaints</a></li>
+            <li><a href="login.html">Logout</a></li>
+        </ul>
+    </nav>
+
+    <h1 class="page-title">Student Complaints</h1>
+
+    <div class="summary" id="complaint-summary">Loading complaint count...</div>
+
+    <div class="table-container">
+        <table id="complaints-table">
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Roll No</th>
+                    <th>Hostel & Room</th>
+                    <th>Complaint Details</th>
+                    <th>Date Reported</th>
+                    <!-- Optional: Add an Action column for marking as 'Resolved' etc. -->
+                    <!-- <th>Action</th> -->
+                </tr>
+            </thead>
+            <tbody id="complaintsTableBody">
+                <!-- Rows will be dynamically inserted here -->
+                 <tr><td colspan="5" style="text-align:center; padding: 20px;">Loading complaints...</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="source-note">Complaints are sourced from student submissions via the portal.</div>
+
+    <script>
+        const BACKEND_URL_REPORTS = 'http://localhost:5000'; // Your backend server URL
+
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchComplaints();
+        });
+
+        async function fetchComplaints() {
+            const summary = document.getElementById('complaint-summary');
+            const tableBody = document.getElementById('complaintsTableBody');
+            summary.textContent = 'Loading complaint count...';
+            tableBody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 20px;">Loading complaints...</td></tr>';
+
+
+            try {
+                const response = await fetch(`${BACKEND_URL_REPORTS}/api/reports`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const reports = await response.json();
+                populateComplaintsTable(reports);
+                summary.textContent = `Total Complaints Logged: ${reports.length}`;
+            } catch (error) {
+                console.error("Error fetching complaints:", error);
+                summary.textContent = 'Failed to load complaints.';
+                tableBody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:red; padding: 20px;">Failed to load complaints. Error: ${error.message}</td></tr>`;
+            }
+        }
+
+        function populateComplaintsTable(reports) {
+            const tableBody = document.getElementById('complaintsTableBody');
+            tableBody.innerHTML = ''; // Clear existing rows
+
+            if (reports.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 20px;">No complaints found.</td></tr>';
+                return;
+            }
+
+            reports.forEach(report => {
+                const row = tableBody.insertRow();
+
+                // Student Name (Optional)
+                row.insertCell().textContent = report.name || 'Anonymous';
+                // Roll No (Optional)
+                row.insertCell().textContent = report.rollno || 'N/A';
+                // Hostel & Room
+                row.insertCell().textContent = `${report.hostel || 'N/A'} - ${report.room || 'N/A'}`;
+                // Complaint Details
+                const descriptionCell = row.insertCell();
+                descriptionCell.textContent = report.description || 'No details provided.';
+                descriptionCell.className = 'complaint-description'; // For styling if needed
+
+                // Date Reported
+                row.insertCell().textContent = new Date(report.createdAt).toLocaleDateString();
+
+                // Optional: Action cell
+                // const actionCell = row.insertCell();
+                // actionCell.innerHTML = `<button onclick="resolveComplaint('${report._id}')" style="color:#4ea8de; background:none; border:none; cursor:pointer;">Mark Resolved</button>`;
+            });
+        }
+
+        // Placeholder for future action
+        // async function resolveComplaint(reportId) {
+        //     alert(`Marking complaint ${reportId} as resolved (Placeholder). Implement backend call.`);
+        //     // Example:
+        //     // try {
+        //     //     const response = await fetch(`${BACKEND_URL_REPORTS}/api/reports/${reportId}/resolve`, { method: 'PUT' });
+        //     //     if (!response.ok) throw new Error('Failed to update status');
+        //     //     fetchComplaints(); // Refresh table
+        //     // } catch (error) {
+        //     //     console.error("Error resolving complaint:", error);
+        //     //     alert("Failed to mark as resolved.");
+        //     // }
+        // }
+    </script>
+</body>
+</html>

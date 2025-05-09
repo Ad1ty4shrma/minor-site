@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - JUIT Wardens</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #121212;
+            color: white;
+            text-align: center;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: linear-gradient(90deg, #1e1e1e, #333);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .navbar .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: #4ea8de;
+            letter-spacing: 1px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .navbar ul li {
+            display: inline;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: 0.3s;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+
+        .navbar ul li a:hover {
+            background: #4ea8de;
+            color: #121212;
+        }
+
+        /* Page Title */
+        .page-title {
+            font-size: 36px;
+            font-weight: 600;
+            margin-top: 70px;
+            margin-bottom: 30px;
+            color: #4ea8de;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            width: 60%;
+            margin: 0 auto;
+            padding: 20px;
+            background: #1e1e1e;
+            border-radius: 10px;
+        }
+
+        .contact-item {
+            margin: 15px 0;
+            padding: 15px;
+            border-bottom: 1px solid #4ea8de;
+        }
+
+        .contact-item:last-child {
+            border-bottom: none;
+        }
+
+        .contact-item h3 {
+            color: #4ea8de;
+            margin-bottom: 5px;
+        }
+
+        .contact-item p {
+            color: #bbb;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">JUIT HELPSITE</div>
+        <ul>
+            <li><a href="homepage.html">Home</a></li> 
+            <li><a href="about.html">About</a></li>
+            <li><a href="outpass.html">Outpass Signing</a></li>
+            <li><a href="report.html">Reports</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Title -->
+    <h1 class="page-title">Contact JUIT Wardens</h1>
+
+    <!-- Contact Information -->
+    <div class="contact-container">
+        <div class="contact-item">
+            <h3>Chief Warden</h3>
+            <p>Name: Dr. Rahul Shrivastava</p>
+            <p>Associate Professor, Department of BT&BI </p>
+            <p>Email: rahul.shrivastava@juitsolan.in;01792-239355 (O), 239531(R) Mob: 8894135634 </p>
+        </div>
+        <div class="contact-item">
+            <h3>Additional Chief Warden: Dr. Gopal Singh Bisht </h3>
+            <p>Associate Professor, Department of BT&BI</p>
+            <p>Email: gopal.singh@juitsolan.in; 01792-239220(O),  Mob: 8894135650 </p>
+        </div>
+        <div class="contact-item">
+            <h3>Dy. Chief Warden: Dr. Neelkanth</h3>
+            <p>Assistant Prof. (Sr Grade), Department of Mathematics</p>
+            <p>Email: neelkanth@juitsolan.in; 01792-239252 (O), 239517 (R) Mob: 8894227228</p>
+        </div>
+    </div>
+
+</body>
+</html>

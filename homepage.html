@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+    .notification {
+        position: relative;
+    }
+
+    .notification a {
+        font-size: 20px;
+        color: white;
+        transition: 0.3s;
+        padding: 8px;
+    }
+
+    .notification a:hover {
+        color: #4ea8de;
+    }
+
+    .badge {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background: red;
+        color: white;
+        font-size: 12px;
+        padding: 4px 8px;
+        border-radius: 50%;
+    }
+
+    .notif-dropdown {
+        display: none;
+        position: absolute;
+        top: 30px; /* Adjusted to ensure it doesn't overlap the bell icon too much */
+        right: 0;
+        background: #1e1e1e;
+        color: white;
+        width: 200px;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        z-index: 10; /* Ensure dropdown is above other elements */
+    }
+
+    .notif-dropdown p {
+        margin: 0;
+        padding: 10px;
+        border-bottom: 1px solid #4ea8de;
+    }
+
+    .notif-dropdown p:last-child {
+        border-bottom: none;
+    }
+
+    .show {
+        display: block;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+        background: #121212;
+        color: white;
+    }
+
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 50px;
+        background: linear-gradient(90deg, #1e1e1e, #333);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        position: relative;
+        z-index: 1;
+    }
+
+    .navbar .logo {
+        font-size: 26px;
+        font-weight: 700;
+        color: #4ea8de;
+        letter-spacing: 1px;
+    }
+
+    .navbar ul {
+        list-style: none;
+        display: flex;
+        gap: 25px;
+        align-items: center;
+    }
+
+    .navbar ul li {
+        display: inline;
+        position: relative; /* Needed for dropdown positioning if any direct children were dropdowns */
+    }
+
+    .navbar ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        transition: 0.3s;
+        padding: 8px 15px;
+        border-radius: 5px;
+    }
+
+    .navbar ul li a:hover {
+        background: #4ea8de;
+        color: #121212;
+    }
+
+    /* Specific style for logout button if needed, e.g., different color on hover */
+
+    .navbar ul li a.logout-btn:hover {
+        /* Example: background-color: #c9302c; */
+        /* Or keep it consistent: */
+        background: #4ea8de;
+        color: #121212;
+    }
+
+
+    .page-title {
+        font-size: 36px;
+        font-weight: 600;
+        margin-top: 70px;
+        margin-bottom: 30px;
+        color: #4ea8de;
+    }
+
+    .hero {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 80px 50px;
+        gap: 60px;
+    }
+
+    .hero-text {
+        flex: 1;
+        max-width: 50%;
+    }
+
+    .hero-text h1 {
+        font-size: 42px;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+
+    .hero-text p {
+        font-size: 15px;
+        color: #bbb;
+        margin-bottom: 20px;
+    }
+
+    .hero-text .btn {
+        padding: 12px 25px;
+        background: #4ea8de;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+        text-decoration: none;
+        display: inline-block;
+        margin-right: 10px; /* Added margin for spacing between buttons */
+    }
+
+    .hero-text .btn:last-child {
+        margin-right: 0; /* Remove margin for the last button */
+    }
+
+    .hero-text .btn:hover {
+        background: #3b8dc6;
+    }
+
+    .hero-image {
+        flex: 1;
+        max-width: 50%;
+    }
+
+    .hero-image img {
+        width: 100%;
+        height: auto; /* Added for better responsiveness with new image aspect ratio */
+        max-height: 450px; /* Optional: to control max height if needed */
+        object-fit: cover; /* Ensures the image covers the area without distortion */
+        border-radius: 10px;
+    }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">JUIT HELPSITE</div>
+        <ul>
+            <li><a href="homepage.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="outpass.html">Outpass Signing</a></li>
+            <li><a href="report.html">Reports</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li class="notification">
+                <a href="#" id="notif-bell"><i class="fa-solid fa-bell"></i></a>
+                <span class="badge" id="notif-count">0</span>
+                <div class="notif-dropdown" id="notif-dropdown">
+                    <p>No new notifications</p>
+                </div>
+            </li>
+            <li><a href="login.html" class="logout-btn">Logout</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-text">
+            <h1>We are here to help.</h1>
+            <p>Get your outpass approved conveniently or report restricted activities directly to the authorities concerned.</p>
+            <a href="outpass.html" class="btn">Outpass</a>
+            <a href="report.html" class="btn">Report</a>
+        </div>
+        <div class="hero-image">
+            <img src="https://images.pexels.com/photos/267507/pexels-photo-267507.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Team Collaboration">
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('notif-bell').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default anchor behavior
+            document.getElementById('notif-dropdown').classList.toggle('show');
+        });
+
+        // Close dropdown if clicked outside
+        window.addEventListener('click', function(event) {
+            const notifDropdown = document.getElementById('notif-dropdown');
+            const notifBell = document.getElementById('notif-bell');
+            // Check if the click is outside the dropdown and not on the bell icon
+            if (!notifDropdown.contains(event.target) && !notifBell.contains(event.target) && !notifBell.parentElement.contains(event.target)) {
+                if (notifDropdown.classList.contains('show')) {
+                    notifDropdown.classList.remove('show');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
