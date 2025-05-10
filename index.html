@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About</title>
+    <title>Login Page</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         * {
@@ -14,124 +14,250 @@
         }
 
         body {
-            background: #121212; /* Dark background */
-            color: white;
-            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/c/c9/Juit_o.jpg') no-repeat center center/cover;
         }
 
-/* Navbar */
-.navbar {
+        .container {
+            display: flex;
+            width: 850px;
+            height: 500px;
+            background: rgba(8, 0, 0, 0.05); /* Slightly more visible container background */
+            backdrop-filter: blur(5px); /* Added blur for better readability */
+            border-radius: 10px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37); /* Enhanced shadow */
+            overflow: hidden;
+        }
+
+        .left {
+            flex: 1;
+            background: url('https://www.juit.ac.in/front/images/banner.jpg') no-repeat center center/cover;
+             /* Ensure the image doesn't get too distorted or pixelated */
+            background-color: rgba(0,0,0,0.3); /* Dark overlay if image fails or for contrast */
+            background-blend-mode: multiply;
+        }
+
+        .right {
+            flex: 1;
+            background: #000911; /* Dark background for login form */
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: white;
+        }
+
+        h2 {
+            margin-bottom: 30px; /* Increased margin */
+            text-align: center; /* Center title */
+            font-weight: 600;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block; /* Ensure label is on its own line or manage with flex */
+            font-size: 14px;
+            color: #bbb;
+            margin-bottom: 5px; /* Space between label and input */
+        }
+
+        input[type="email"], input[type="password"] { /* Be specific with input types */
+            width: 100%;
+            padding: 12px 15px; /* Increased padding */
+            margin-top: 5px;
+            background: rgba(255, 255, 255, 0.08); /* Slightly more opaque */
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+            border-radius: 5px;
+            color: white;
+            font-size: 14px;
+        }
+
+        input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #4ea8de; /* Accent color on focus */
+        }
+
+        .checkbox-group {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 50px;
-            background: linear-gradient(90deg, #1e1e1e, #333);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            position: relative;
-            z-index: 1;
+            font-size: 14px;
+            color: #bbb;
+            margin-bottom: 25px; /* Increased margin */
         }
 
-        .navbar .logo {
-            font-size: 26px;
-            font-weight: 700;
-            color: #4ea8de;
-            letter-spacing: 1px;
-        }
-
-        .navbar ul {
-            list-style: none;
+        .checkbox-group div {
             display: flex;
-            gap: 25px;
+            align-items: center;
+            gap: 8px; /* Increased gap */
+            white-space: nowrap;
+        }
+        .checkbox-group input[type="checkbox"] { /* Style checkbox if needed */
+            width: auto; /* Reset width for checkbox */
+            margin: 0;
         }
 
-        .navbar ul li {
-            display: inline;
-        }
-
-        .navbar ul li a {
-            color: white;
+         .checkbox-group a {
+            color: #4ea8de;
             text-decoration: none;
-            font-size: 18px;
-            transition: 0.3s;
-            padding: 8px 15px;
+            transition: color 0.3s;
+        }
+        .checkbox-group a:hover {
+            color: #6ec1f1; /* Lighter accent on hover */
+        }
+
+        .btn { /* This class was unused, changed SIGN IN button to use it */
+            width: 100%;
+            padding: 12px; /* Increased padding */
+            border: none;
             border-radius: 5px;
-        }
-
-        .navbar ul li a:hover {
             background: #4ea8de;
-            color: #121212;
+            color: white;
+            font-size: 16px;
+            font-weight: 600; /* Bolder text */
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 10px; /* Space between buttons */
         }
 
-        /* Page Title */
-        .page-title {
-            font-size: 36px;
+        .btn:hover {
+            background: #3b8dc6;
+        }
+
+        .google-btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            background: #db4437; /* Google red */
+            color: white;
+            font-size: 16px;
             font-weight: 600;
-            margin-top: 70px;
-            margin-bottom: 30px;
-            color: #4ea8de;
-        }
-
-        /* Container for Image & Text */
-        .content {
-            display: flex;
-            flex-direction: column;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex; /* For icon alignment if added */
             align-items: center;
             justify-content: center;
-            max-width: 90%;
-            margin: 50px auto;
+            gap: 10px;
         }
 
-        /* Image Section */
-        .hero-image img {
-            width: 80%;
-            max-width: 800px;
-            border-radius: 20px;
-            margin-bottom: 40px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.6);
+        .google-btn:hover {
+            background: #c23321;
         }
 
-        /* Text Section */
-        .hero-text {
-            max-width: 75%;
+        .footer {
             text-align: center;
-            font-size: 20px;
-            line-height: 1.8;
-            color: #ccc;
-            background: #1e1e1e;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
+            font-size: 12px;
+            color: #bbb;
+            margin-top: 30px; /* Increased margin */
+        }
+
+        .footer a {
+            color: #4ea8de;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
-
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="logo">JUIT HELPSITE</div>
-        <ul>
-            <li><a href="homepage.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="outpass.html">Outpass Signing</a></li> 
-            <li><a href="report.html">Reports</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
-
-    <!-- Image & Text Section -->
-    <section class="content">
-        <div class="hero-image">
-            <img src="https://live.staticflickr.com/8640/15848488996_91ceb49b11_h.jpg=" alt="College Image">
+    <div class="container">
+        <div class="left"></div>
+        <div class="right">
+            <h2>Sign In</h2>
+            <!-- Removed the <form> tag as it's not being submitted traditionally -->
+            <div class="input-group">
+                <label for="email">Your email</label>
+                <input type="email" id="emailInput" placeholder="Enter your email" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Your password</label>
+                <input type="password" id="passwordInput" placeholder="Enter your password" required>
+            </div>
+            <div class="checkbox-group">
+                <div>
+                    <input type="checkbox" id="keep-logged">
+                    <label for="keep-logged">Stay logged in</label>
+                </div>
+                <a href="#">Forgot password?</a>
+            </div>
+            <!-- Added an ID to this button for JavaScript -->
+            <button class="btn" id="signInBtn">SIGN IN</button>
+            <button class="google-btn" id="signInGoogleBtn">SIGN IN WITH GOOGLE</button>
+            <div class="footer">
+                <p><a href="#">Privacy</a> • <a href="#">Terms</a> • <a href="#">About</a></p>
+            </div>
         </div>
+    </div>
 
-        <div class="hero-text">
-            <p>The proposed website serves as a comprehensive platform designed to streamline outpass approvals and address bullying concerns within a college campus.</p>
-            <p>The outpass module enables students to request permissions digitally, with automated notifications to designated authorities for swift approval. This reduces paperwork and ensures transparency in the process.</p>
-            <p>The bullying helpline module offers a secure and anonymous space for students to report incidents of harassment or bullying.</p>
-            <p>The platform emphasizes user-friendliness, data security, and quick response times, fostering a safer, more inclusive campus environment while improving administrative efficiency.</p>
-        </div>
-    </section>
+    <script>
+        const emailInput = document.getElementById('emailInput');
+        const passwordInput = document.getElementById('passwordInput');
+        const signInBtn = document.getElementById('signInBtn');
+        const signInGoogleBtn = document.getElementById('signInGoogleBtn');
 
+        const BACKEND_LOGIN_URL = 'http://localhost:5000/api/users/login'; // Your backend login URL
+
+        signInBtn.addEventListener('click', async function() { // Made function async
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+
+            if (email === "" || password === "") {
+                alert("Please enter both email and password.");
+                return;
+            }
+
+            try {
+                const response = await fetch(BACKEND_LOGIN_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success && data.token) {
+                    // Login successful
+                    alert("Login successful! Redirecting...");
+
+                    // Store the token (e.g., in localStorage)
+                    // For security, HttpOnly cookies are better in production,
+                    // but localStorage is simpler for this demo.
+                    localStorage.setItem('authToken', data.token);
+                    localStorage.setItem('userRole', data.user.role); // Store role for easy access
+                    localStorage.setItem('userName', data.user.name); // Store name
+
+                    // Redirect based on role
+                    if (data.user.role === 'student') {
+                        window.location.href = 'homepage.html';
+                    } else if (data.user.role === 'warden') {
+                        window.location.href = 'warden.html';
+                    } else {
+                        // Should not happen if roles are well-defined
+                        alert("Unknown user role. Please contact support.");
+                    }
+                } else {
+                    // Login failed
+                    alert(data.message || "Login failed. Please check your credentials.");
+                    passwordInput.value = ""; // Clear password field
+                }
+
+            } catch (error) {
+                console.error('Login request error:', error);
+                alert("An error occurred during login. Please try again later.");
+            }
+        });
+
+        signInGoogleBtn.addEventListener('click', function() {
+            alert("Sign in with Google - Functionality not yet implemented.");
+        });
+    </script>
 </body>
 </html>
-
